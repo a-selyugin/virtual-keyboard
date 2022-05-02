@@ -1,2 +1,2 @@
 # virtual-keyboard
-Virtual keyboard project 
+https://a-selyugin.github.io/virtual-keyboard
