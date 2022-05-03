@@ -1,5 +1,9 @@
 $font-main: helvetica, sans-serif;
 $keyboard-background: #d6d6d6;
+$main-key-background: rgba(0, 0, 0, 0.5);
+$func-key-background: rgba(0, 0, 0, 0.9);
+$hover-color: rgba(0, 0, 0, 0.2);
+$text-color: #FFFFFF;
 
 body{
     margin: 0;
@@ -31,10 +35,48 @@ body{
 
 .keyboard__container{
     margin: 0 auto;
-    width: 800px;
-    height: 200px;
+    width: 675px;
+
     padding: 10px;
     background-color: $keyboard-background;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.keyboard__key {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px 0 5px 5px;
+    background-color: $main-key-background;
+    color: $text-color;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover{
+        background-color: $hover-color;
+    }
+}
+
+.Backspase, .TAB, .DEL, .CAPS, .Enter, .Shift, .Ctrl, .Alt, .Space, .Up, .Left, .Down, .Right, .ShiftRight, .AltRight, .CtrlRight{
+    background-color: $func-key-background;
+    width: 80px;
+}
+
+.Space{
+    width: 270px;
+}
+
+.Enter{
+    width: 86px;
+}
+.DEL, .Up, .Left, .Down, .Right, .ShiftRight, .AltRight, .CtrlRight{
+    background-color: $func-key-background;
+    width: 40px;
 }
