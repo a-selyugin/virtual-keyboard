@@ -35,7 +35,6 @@ const keyboardRowThree = document.querySelector('.keyboard__row-3');
 const keyboardRowFour = document.querySelector('.keyboard__row-4');
 const keyboardRowFive = document.querySelector('.keyboard__row-5');
 
-
 function createKeyRow(documentRow, ElementsRow) {
   for (let i = 0; i < ElementsRow.length; i += 1) {
     const keyElement = document.createElement('div');
