@@ -21,7 +21,7 @@ body{
     text-align: center;
 }
 
-.main__textarea{
+.main__textarea {
     display: block;
     margin: 20px auto 20px;
     padding: 10px;
@@ -29,11 +29,11 @@ body{
     height: 200px;
 }
 
-.main__legend{
+.main__legend {
     text-align: center;
 }
 
-.keyboard__container{
+.keyboard__container {
     margin: 0 auto;
     width: 675px;
     font-weight: 200;
@@ -73,14 +73,20 @@ body{
     font-weight: 500;
 }
 
-.Space{
+.Space {
     width: 270px;
 }
 
-.Enter{
+.Enter {
     width: 86px;
 }
 .DEL, .Up, .Left, .Down, .Right, .ShiftRight, .AltRight, .CtrlRight{
     background-color: $func-key-background;
     width: 40px;
+}
+
+.Backspase {
+    background-image: url('../icons/backspace-outline.svg');
+    background-position: center;
+    background-repeat: no-repeat;
 }
