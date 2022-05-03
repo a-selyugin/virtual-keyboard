@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
 
 class Key {
