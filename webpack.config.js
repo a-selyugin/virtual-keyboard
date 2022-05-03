@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   entry: './src/index.js',
   devServer: {
@@ -14,10 +13,10 @@ module.exports = {
   mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
-        title: 'Keyboard',
-        filename: 'index.html',
-        template: 'src/index.html',
-    })
+      title: 'Keyboard',
+      filename: 'index.html',
+      template: 'src/index.html',
+    }),
   ],
   module: {
     rules: [
@@ -27,7 +26,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
