@@ -6,14 +6,14 @@ class Key {
     this.name = name;
     this.eng = {
       lowerCase: engKey,
-      upperCase: engKey.indexOf(exceptionsArray) ? engKey : engKey.toUpperCase(),
-      caps: engKey.indexOf(exceptionsArray) ? engKey : engKey.toUpperCase(),
+      upperCase: engKey.includes(exceptionsArray) ? engKey : engKey.toUpperCase(),
+      caps: engKey.includes(exceptionsArray) ? engKey : engKey.toUpperCase(),
       shiftedCaps: engKey,
     };
     this.rus = {
       lowerCase: rusKey,
-      upperCase: engKey.indexOf(exceptionsArray) ? rusKey : rusKey.toUpperCase(),
-      caps: engKey.indexOf(exceptionsArray) ? rusKey : rusKey.toUpperCase(),
+      upperCase: engKey.includes(exceptionsArray) ? rusKey : rusKey.toUpperCase(),
+      caps: engKey.includes(exceptionsArray) ? rusKey : rusKey.toUpperCase(),
       shiftedCaps: rusKey,
     };
   }
@@ -56,19 +56,19 @@ for (let i = 0; i < keyNamesArray.length; i += 1) {
   fullKeyboard.push(newKey);
 }
 
-for (let i = 0; i < 13; i += 1) {
+for (let i = 0; i <= 13; i += 1) {
   firstRow.push(fullKeyboard[i]);
 }
-for (let i = 14; i < 27; i += 1) {
+for (let i = 14; i <= 27; i += 1) {
   secondRow.push(fullKeyboard[i]);
 }
-for (let i = 28; i < 41; i += 1) {
+for (let i = 28; i <= 41; i += 1) {
   thirdRow.push(fullKeyboard[i]);
 }
-for (let i = 42; i < 54; i += 1) {
+for (let i = 42; i <= 54; i += 1) {
   fourthRow.push(fullKeyboard[i]);
 }
-for (let i = 55; i < 62; i += 1) {
+for (let i = 55; i <= 62; i += 1) {
   fifthRow.push(fullKeyboard[i]);
 }
 
