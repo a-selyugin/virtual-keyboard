@@ -35,14 +35,12 @@ const keyboardRowThree = document.querySelector('.keyboard__row-3');
 const keyboardRowFour = document.querySelector('.keyboard__row-4');
 const keyboardRowFive = document.querySelector('.keyboard__row-5');
 
-// for (let i = 0; i < keys.firstRow.length; i += 1) {
-//   addElement('div', keys.firstRow[i].name, keys.firstRow[i].eng.lowerCase, keyboardRowOne);
-// }
 
 function createKeyRow(documentRow, ElementsRow) {
   for (let i = 0; i < ElementsRow.length; i += 1) {
     const keyElement = document.createElement('div');
     keyElement.classList.add('keyboard__key');
+    keyElement.classList.add(ElementsRow[i].name);
 
     const engSpan = document.createElement('span');
     engSpan.classList.add('eng');
@@ -70,12 +68,14 @@ function createKeyRow(documentRow, ElementsRow) {
 
     for (let j = 0; j < rusProps.length; j += 1) {
       const rusSpanItem = document.createElement('span');
-      const content = engProps[j][2];
+      const content = engProps[j][1];
 
-      rusSpanItem.classList.add(engProps[j][1]);
+      rusSpanItem.classList.add(engProps[j][0]);
       rusSpanItem.classList.add('hidden');
 
-      rusSpanItem.innerHTML = content;
+      if (content) {
+        rusSpanItem.innerHTML = content;
+      }
 
       rusSpan.append(rusSpanItem);
     }
@@ -87,5 +87,7 @@ function createKeyRow(documentRow, ElementsRow) {
 }
 
 createKeyRow(keyboardRowOne, keys.firstRow);
-
-//console.log(keys.firstRow, keys.secondRow, keys.thirdRow, keys.fourthRow, keys.fifthRow);
+createKeyRow(keyboardRowTwo, keys.secondRow);
+createKeyRow(keyboardRowThree, keys.thirdRow);
+createKeyRow(keyboardRowFour, keys.fourthRow);
+createKeyRow(keyboardRowFive, keys.fifthRow);
