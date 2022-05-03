@@ -31,7 +31,7 @@ const rusKeyboardArray = [
   'ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspase',
   'TAB', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'DEL',
   'CAPS', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',
-  'Shift', '\'', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Up', 'Shift',
+  'Shift', '\\', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Up', 'Shift',
   'Ctrl', 'Alt', ' ', 'Alt', 'Ctrl', 'Left', 'Down', 'Right',
 ];
 
@@ -40,8 +40,8 @@ const engKeyboardArray = [
   'TAB', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'DEL',
   // eslint-disable-next-line quotes
   'CAPS', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', `'`, 'Enter',
-  'Shift', '\'', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Up', 'Shift',
-  'Ctrl', 'Alt', 'space', 'Alt', 'Ctrl', 'Left', 'Down', 'Right',
+  'Shift', '\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Up', 'Shift',
+  'Ctrl', 'Alt', '', 'Alt', 'Ctrl', 'Left', 'Down', 'Right',
 ];
 
 const fullKeyboard = [];
