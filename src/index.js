@@ -2,7 +2,7 @@ import './assets/styles/style.css';
 import './assets/styles/style.scss';
 import keys from './keys';
 import createKeyRow from './createKeyRow';
-import appendElementTo from './appendElementTo'
+import appendElementTo from './appendElementTo';
 
 // initialize page
 // initialize page wrapper
