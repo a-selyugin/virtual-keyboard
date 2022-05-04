@@ -19,22 +19,14 @@ appendElementTo('p', 'main__legend', 'placeholder2', wrapper);
 // create keyboard rows
 const keyboardContainer = document.querySelector('.keyboard__container');
 
+// fill keyboard
 for (let i = 0; i < 5; i += 1) {
   appendElementTo('div', `keyboard__row-${i + 1}`, '', keyboardContainer);
+
+  const keyboardRowArray = document.querySelector(`.keyboard__row-${i + 1}`);
+  createKeyRow(keyboardRowArray, keys.keyboardArray[i]);
 }
 
-const keyboardRowOne = document.querySelector('.keyboard__row-1');
-const keyboardRowTwo = document.querySelector('.keyboard__row-2');
-const keyboardRowThree = document.querySelector('.keyboard__row-3');
-const keyboardRowFour = document.querySelector('.keyboard__row-4');
-const keyboardRowFive = document.querySelector('.keyboard__row-5');
-
-// fill rows with keys
-createKeyRow(keyboardRowOne, keys.firstRow);
-createKeyRow(keyboardRowTwo, keys.secondRow);
-createKeyRow(keyboardRowThree, keys.thirdRow);
-createKeyRow(keyboardRowFour, keys.fourthRow);
-createKeyRow(keyboardRowFive, keys.fifthRow);
 document.addEventListener('keydown', (event) => {
   console.log(event.code);
 });

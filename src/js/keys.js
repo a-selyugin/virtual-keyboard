@@ -1,4 +1,4 @@
-import Key from './Key'
+import Key from './Key';
 
 const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
 
@@ -27,33 +27,35 @@ const engKeyboardArray = [
 ];
 
 const fullKeyboard = [];
-const firstRow = [];
-const secondRow = [];
-const thirdRow = [];
-const fourthRow = [];
-const fifthRow = [];
 
 for (let i = 0; i < keyNamesArray.length; i += 1) {
   const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], rusKeyboardArray[i]);
   fullKeyboard.push(newKey);
 }
 
+const keyboardArray = [];
+for (let i = 0; i < 5; i += 1) {
+  keyboardArray.push([]);
+}
 for (let i = 0; i <= 13; i += 1) {
-  firstRow.push(fullKeyboard[i]);
-}
-for (let i = 14; i <= 27; i += 1) {
-  secondRow.push(fullKeyboard[i]);
-}
-for (let i = 28; i <= 40; i += 1) {
-  thirdRow.push(fullKeyboard[i]);
-}
-for (let i = 41; i <= 54; i += 1) {
-  fourthRow.push(fullKeyboard[i]);
-}
-for (let i = 55; i <= 62; i += 1) {
-  fifthRow.push(fullKeyboard[i]);
+  keyboardArray[0].push(fullKeyboard[i]);
 }
 
+for (let i = 14; i <= 27; i += 1) {
+  keyboardArray[1].push(fullKeyboard[i]);
+}
+for (let i = 28; i <= 40; i += 1) {
+  keyboardArray[2].push(fullKeyboard[i]);
+}
+for (let i = 41; i <= 54; i += 1) {
+  keyboardArray[3].push(fullKeyboard[i]);
+}
+for (let i = 55; i <= 62; i += 1) {
+  keyboardArray[4].push(fullKeyboard[i]);
+}
+
+console.log(keyboardArray);
+
 export default {
-  firstRow, secondRow, thirdRow, fourthRow, fifthRow,
+  keyboardArray,
 };
