@@ -1,8 +1,8 @@
 import '../assets/styles/style.css';
 import '../assets/styles/style.scss';
 import keys from './keys';
-import createKeyRow from './createKeyRow';
 import appendElementTo from './appendElementTo';
+import Keyboard from './Keyboard';
 
 // initialize page
 // initialize page wrapper
@@ -19,13 +19,10 @@ appendElementTo('p', 'main__legend', 'placeholder2', wrapper);
 // create keyboard rows
 const keyboardContainer = document.querySelector('.keyboard__container');
 
-// fill keyboard
-for (let i = 0; i < 5; i += 1) {
-  appendElementTo('div', `keyboard__row-${i + 1}`, '', keyboardContainer);
+// create keyboard
+const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray);
 
-  const keyboardRowArray = document.querySelector(`.keyboard__row-${i + 1}`);
-  createKeyRow(keyboardRowArray, keys.keyboardArray[i]);
-}
+keyboard.init();
 
 document.addEventListener('keydown', (event) => {
   console.log(event.code);
