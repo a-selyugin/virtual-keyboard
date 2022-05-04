@@ -1,7 +1,5 @@
 import Key from './Key';
 
-const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
-
 const keyNamesArray = [
   'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspase',
   'TAB', 'KeyQ', 'keyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'DEL',
@@ -34,9 +32,11 @@ for (let i = 0; i < keyNamesArray.length; i += 1) {
 }
 
 const keyboardArray = [];
+
 for (let i = 0; i < 5; i += 1) {
   keyboardArray.push([]);
 }
+
 for (let i = 0; i <= 13; i += 1) {
   keyboardArray[0].push(fullKeyboard[i]);
 }
@@ -44,17 +44,18 @@ for (let i = 0; i <= 13; i += 1) {
 for (let i = 14; i <= 27; i += 1) {
   keyboardArray[1].push(fullKeyboard[i]);
 }
+
 for (let i = 28; i <= 40; i += 1) {
   keyboardArray[2].push(fullKeyboard[i]);
 }
+
 for (let i = 41; i <= 54; i += 1) {
   keyboardArray[3].push(fullKeyboard[i]);
 }
+
 for (let i = 55; i <= 62; i += 1) {
   keyboardArray[4].push(fullKeyboard[i]);
 }
-
-console.log(keyboardArray);
 
 export default {
   keyboardArray,
