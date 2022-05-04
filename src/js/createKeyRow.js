@@ -45,5 +45,9 @@ export default function createKeyRow(documentRow, ElementsRow) {
     keyElement.append(engSpan);
     keyElement.append(rusSpan);
     documentRow.append(keyElement);
+
+    keyElement.addEventListener('click', () => {
+      console.log(ElementsRow[i].eng.lowerCase);
+    });
   }
 }
