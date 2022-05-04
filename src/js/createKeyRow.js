@@ -8,12 +8,14 @@ export default function createKeyRow(documentRow, ElementsRow) {
     for (let j = 0; j < ElementsRow[i].languages.length; j += 1) {
       const language = ElementsRow[i].languages[j];
       let content;
+
+      // тут определяем какой язык и присваиваем соответствущее значение экземпляра Key
       if (language === 'eng') {
         content = ElementsRow[i].engKey;
-      }
-      else if (language === 'rus') {
+      } else if (language === 'rus') {
         content = ElementsRow[i].rusKey;
       }
+
       const newSpan = document.createElement('span');
       newSpan.classList.add(language);
 
@@ -26,31 +28,32 @@ export default function createKeyRow(documentRow, ElementsRow) {
       const lowerCaseSpan = document.createElement('span');
       lowerCaseSpan.classList.add('lowerCase');
       lowerCaseSpan.innerHTML = content;
+      newSpan.append(lowerCaseSpan);
 
       // создаем upperCase Span
       const upperCaseSpan = document.createElement('span');
       upperCaseSpan.classList.add('upperCase', 'hidden');
       upperCaseSpan.innerHTML = content.includes(exceptionsArray) ? content : content.toUpperCase();
+      newSpan.append(upperCaseSpan);
 
       // создаем caps Span
       const capsSpan = document.createElement('span');
       capsSpan.classList.add('caps', 'hidden');
       capsSpan.innerHTML = content.includes(exceptionsArray) ? content : content.toUpperCase();
+      newSpan.append(capsSpan);
 
       // создаем shiftedCaps Span
       const shiftedCaps = document.createElement('span');
       shiftedCaps.classList.add('lowerCase', 'hidden');
       shiftedCaps.innerHTML = content;
-
-      newSpan.append(lowerCaseSpan);
-      newSpan.append(upperCaseSpan);
-      newSpan.append(capsSpan);
       newSpan.append(shiftedCaps);
+
       keyElement.append(newSpan);
     }
 
     documentRow.append(keyElement);
 
+    // добавляем временный listener для отладки
     keyElement.addEventListener('click', () => {
       console.log(ElementsRow[i].engKey);
     });
