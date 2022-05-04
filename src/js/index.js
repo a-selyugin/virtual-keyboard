@@ -35,3 +35,6 @@ createKeyRow(keyboardRowTwo, keys.secondRow);
 createKeyRow(keyboardRowThree, keys.thirdRow);
 createKeyRow(keyboardRowFour, keys.fourthRow);
 createKeyRow(keyboardRowFive, keys.fifthRow);
+document.addEventListener('keydown', (event) => {
+  console.log(event.code);
+});
