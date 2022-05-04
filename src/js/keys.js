@@ -1,22 +1,6 @@
-const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
+import Key from './Key'
 
-class Key {
-  constructor(name, engKey, rusKey) {
-    this.name = name;
-    this.eng = {
-      lowerCase: engKey,
-      upperCase: engKey.includes(exceptionsArray) ? engKey : engKey.toUpperCase(),
-      caps: engKey.includes(exceptionsArray) ? engKey : engKey.toUpperCase(),
-      shiftedCaps: engKey,
-    };
-    this.rus = {
-      lowerCase: rusKey,
-      upperCase: engKey.includes(exceptionsArray) ? rusKey : rusKey.toUpperCase(),
-      caps: engKey.includes(exceptionsArray) ? rusKey : rusKey.toUpperCase(),
-      shiftedCaps: rusKey,
-    };
-  }
-}
+const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
 
 const keyNamesArray = [
   'Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspase',
@@ -50,7 +34,7 @@ const fourthRow = [];
 const fifthRow = [];
 
 for (let i = 0; i < keyNamesArray.length; i += 1) {
-  const newKey = new Key(keyNamesArray[i], engKeyboardArray[i], rusKeyboardArray[i]);
+  const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], rusKeyboardArray[i]);
   fullKeyboard.push(newKey);
 }
 
