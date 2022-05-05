@@ -101,7 +101,6 @@ export default class Keyboard {
             keyElement.classList.remove('pressed');
           });
       }
-
     }
   }
 
