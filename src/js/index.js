@@ -25,14 +25,3 @@ const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray, activeTexta
 keyboard.init();
 
 activeTextarea.readOnly = true;
-
-document.addEventListener('keydown', (event) => {
-  keyboard.outputString += event.code;
-  activeTextarea.value += event.key;
-  const activeKey = document.querySelector(`.${event.code}`);
-  activeKey.classList.add('pressed');
-});
-document.addEventListener('keyup', (event) => {
-  const activeKey = document.querySelector(`.${event.code}`);
-  activeKey.classList.remove('pressed');
-});

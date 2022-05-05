@@ -123,5 +123,16 @@ export default class Keyboard {
       const keyboardRowArray = document.querySelector(`.keyboard__row-${i + 1}`);
       this.createKeyRow(keyboardRowArray, this.keyboardArray[i], this.exceptionsArray);
     }
+
+    document.addEventListener('keydown', (event) => {
+      this.outputString += event.code;
+      this.textarea.value += event.key;
+      const activeKey = document.querySelector(`.${event.code}`);
+      activeKey.classList.add('pressed');
+    });
+    document.addEventListener('keyup', (event) => {
+      const activeKey = document.querySelector(`.${event.code}`);
+      activeKey.classList.remove('pressed');
+    });
   }
 }
