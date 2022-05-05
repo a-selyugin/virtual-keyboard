@@ -21,7 +21,7 @@ const engKeyboardArray = [
   'TAB', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'DEL',
   'CAPS', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter',
   'Shift', '\\', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '↑', 'Shift',
-  'Ctrl', 'Alt', '', 'Alt', 'Ctrl', '←', '↓', '→',
+  'Ctrl', 'Alt', ' ', 'Alt', 'Ctrl', '←', '↓', '→',
 ];
 
 const fullKeyboard = [];
