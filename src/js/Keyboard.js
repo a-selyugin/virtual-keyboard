@@ -36,7 +36,7 @@ export default class Keyboard {
 
         // создаем lowerCase Span
         const lowerCaseSpan = document.createElement('span');
-        lowerCaseSpan.classList.add('lowerCase', 'currentlyPresent');
+        lowerCaseSpan.classList.add('lowerCase', 'currentKeyValue');
         lowerCaseSpan.innerHTML = content;
         newSpan.append(lowerCaseSpan);
 
@@ -102,7 +102,7 @@ export default class Keyboard {
 
         default:
           keyElement.addEventListener('mousedown', () => {
-            let currentKeyValue = keyElement.querySelector('.currentlyPresent');
+            let currentKeyValue = keyElement.querySelector('.currentKeyValue');
             currentKeyValue = currentKeyValue.innerHTML;
             this.outputString += currentKeyValue;
             this.textarea.value += currentKeyValue;
@@ -124,11 +124,36 @@ export default class Keyboard {
       this.createKeyRow(keyboardRowArray, this.keyboardArray[i], this.exceptionsArray);
     }
 
+    this.keyboardHandler();
+  }
+
+  keyboardHandler() {
     document.addEventListener('keydown', (event) => {
-      this.outputString += event.code;
-      this.textarea.value += event.key;
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.add('pressed');
+      const calledKey = activeKey.querySelector('.currentKeyValue');
+      const content = calledKey.innerHTML;
+      switch (event.code){
+        case 'Backspace':
+          this.outputString = this.outputString.substring(0, this.outputString.length - 1);
+          this.textarea.value = this.textarea.value.substring(0, this.textarea.value.length - 1);
+          break;
+        case 'Enter':
+          this.outputString += '\n';
+          this.textarea.value += '\n';
+          break;
+        case 'Space':
+          this.outputString += ' ';
+          this.textarea.value += ' ';
+          break;
+        case 'Tab':
+          this.outputString += '    ';
+          this.textarea.value += '    ';
+          break;
+        default:
+          this.outputString += content;
+          this.textarea.value += content;
+      }
     });
     document.addEventListener('keyup', (event) => {
       const activeKey = document.querySelector(`.${event.code}`);
