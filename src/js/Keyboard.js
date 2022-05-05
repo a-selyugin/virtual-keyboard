@@ -40,12 +40,12 @@ export default class Keyboard {
         lowerCaseSpan.innerHTML = content;
         newSpan.append(lowerCaseSpan);
 
-        // создаем upperCase Span
-        const upperCaseSpan = document.createElement('span');
-        upperCaseSpan.classList.add('upperCase', 'hidden');
-        upperCaseSpan.innerHTML = noCapsKeysArray
+        // создаем shifted Span
+        const shiftedSpan = document.createElement('span');
+        shiftedSpan.classList.add('shifted', 'hidden');
+        shiftedSpan.innerHTML = noCapsKeysArray
           .includes(content) ? content : content.toUpperCase();
-        newSpan.append(upperCaseSpan);
+        newSpan.append(shiftedSpan);
 
         // создаем caps Span
         const capsSpan = document.createElement('span');
