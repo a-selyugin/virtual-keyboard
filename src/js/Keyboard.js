@@ -65,16 +65,32 @@ export default class Keyboard {
       documentRow.append(keyElement);
 
       // добавляем listener для каждого элемента
-      keyElement.addEventListener('mousedown', () => {
-        let currentKeyValue = keyElement.querySelector('.currentlyPresent');
-        currentKeyValue = currentKeyValue.innerHTML;
-        this.outputString += currentKeyValue;
-        this.textarea.value += currentKeyValue;
-        keyElement.classList.add('pressed');
-      });
-      keyElement.addEventListener('mouseup', () => {
-        keyElement.classList.remove('pressed');
-      });
+
+      switch (ElementsRow[i].name) {
+        case 'Backspace':
+          keyElement.addEventListener('mousedown', () => {
+            this.outputString = this.outputString.substring(0, this.outputString.length - 1);
+            this.textarea.value = this.textarea.value.substring(0, this.textarea.value.length - 1);
+            keyElement.classList.add('pressed');
+          });
+          keyElement.addEventListener('mouseup', () => {
+            keyElement.classList.remove('pressed');
+          });
+          break;
+
+        default:
+          keyElement.addEventListener('mousedown', () => {
+            let currentKeyValue = keyElement.querySelector('.currentlyPresent');
+            currentKeyValue = currentKeyValue.innerHTML;
+            this.outputString += currentKeyValue;
+            this.textarea.value += currentKeyValue;
+            keyElement.classList.add('pressed');
+          });
+          keyElement.addEventListener('mouseup', () => {
+            keyElement.classList.remove('pressed');
+          });
+      }
+
     }
   }
 
