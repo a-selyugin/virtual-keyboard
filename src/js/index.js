@@ -11,7 +11,7 @@ const wrapper = document.querySelector('.wrapper');
 
 // create page content
 appendElementTo('h1', 'header', 'Virtual Keyboard for RSSchool', wrapper);
-appendElementTo('textarea', 'main__textarea', 'placeholder', wrapper);
+appendElementTo('textarea', 'main__textarea', '', wrapper);
 appendElementTo('div', 'keyboard__container', '', wrapper);
 appendElementTo('p', 'main__legend', 'placeholder1', wrapper);
 appendElementTo('p', 'main__legend', 'placeholder2', wrapper);
