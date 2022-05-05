@@ -139,14 +139,17 @@ export default class Keyboard {
           this.textarea.value = this.textarea.value.substring(0, this.textarea.value.length - 1);
           break;
         case 'Enter':
+          event.preventDefault();
           this.outputString += '\n';
           this.textarea.value += '\n';
           break;
         case 'Space':
+          event.preventDefault();
           this.outputString += ' ';
           this.textarea.value += ' ';
           break;
         case 'Tab':
+          event.preventDefault();
           this.outputString += '    ';
           this.textarea.value += '    ';
           break;
