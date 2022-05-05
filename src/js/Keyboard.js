@@ -1,8 +1,8 @@
 export default class Keyboard {
-  constructor(container, keyboardArray) {
+  constructor(container, keyboardArray, textarea) {
     this.keyboardArray = keyboardArray;
     this.container = container;
-
+    this.textarea = textarea;
     this.capsLock = false;
     this.shiftIsPressed = false;
     this.outputString = '';
@@ -67,7 +67,7 @@ export default class Keyboard {
       // добавляем listener для каждого элемента
       keyElement.addEventListener('click', () => {
         this.outputString += ElementsRow[i].engKey;
-        console.log(this.outputString);
+        this.textarea.value += ElementsRow[i].engKey;
       });
     }
   }

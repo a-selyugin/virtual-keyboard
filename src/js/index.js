@@ -18,12 +18,19 @@ appendElementTo('p', 'main__legend', 'placeholder2', wrapper);
 
 // create keyboard rows
 const keyboardContainer = document.querySelector('.keyboard__container');
-
+const activeTextarea = document.querySelector('textarea');
 // create keyboard
-const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray);
+const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray, activeTextarea);
 
 keyboard.init();
 
 document.addEventListener('keydown', (event) => {
-  console.log(event.code);
+  keyboard.outputString += event.code;
+  activeTextarea.value += event.key;
+  const activeKey = document.querySelector(`.${event.code}`);
+  activeKey.classList.add('pressed');
+});
+document.addEventListener('keyup', (event) => {
+  const activeKey = document.querySelector(`.${event.code}`);
+  activeKey.classList.remove('pressed');
 });
