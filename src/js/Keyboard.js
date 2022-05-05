@@ -36,7 +36,7 @@ export default class Keyboard {
 
         // создаем lowerCase Span
         const lowerCaseSpan = document.createElement('span');
-        lowerCaseSpan.classList.add('lowerCase');
+        lowerCaseSpan.classList.add('lowerCase', 'currentlyPresent');
         lowerCaseSpan.innerHTML = content;
         newSpan.append(lowerCaseSpan);
 
@@ -66,8 +66,10 @@ export default class Keyboard {
 
       // добавляем listener для каждого элемента
       keyElement.addEventListener('mousedown', () => {
-        this.outputString += ElementsRow[i].engKey;
-        this.textarea.value += ElementsRow[i].engKey;
+        let currentKeyValue = keyElement.querySelector('.currentlyPresent');
+        currentKeyValue = currentKeyValue.innerHTML;
+        this.outputString += currentKeyValue;
+        this.textarea.value += currentKeyValue;
         keyElement.classList.add('pressed');
       });
       keyElement.addEventListener('mouseup', () => {
