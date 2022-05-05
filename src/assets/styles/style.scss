@@ -2,7 +2,8 @@ $font-main: helvetica, sans-serif;
 $keyboard-background: #d6d6d6;
 $main-key-background: rgba(0, 0, 0, 0.5);
 $func-key-background: rgba(0, 0, 0, 0.9);
-$hover-color: rgba(0, 0, 0, 0.2);
+$hover-color: rgba(0, 0, 0, 0.6);
+$pressedKey-color: rgba(0, 0, 0, 0.2);
 $text-color: #FFFFFF;
 
 body{
@@ -67,7 +68,7 @@ body{
     -webkit-tap-highlight-color: transparent;
 }
 
-.Backspase, .TAB, .DEL, .CAPS, .Enter, .Shift, .Ctrl, .Alt, .Space, .Up, .Left, .Down, .Right, .ShiftRight, .AltRight, .CtrlRight{
+.Backspace, .Tab, .DEL, .CapsLock, .Enter, .ShiftLeft, .ControlLeft, .AltLeft, .Space, .ArrowUp, .ArrowLeft, .ArrowDown, .ArrowRight, .ShiftRight, .AltRight, .ControlRight{
     background-color: $func-key-background;
     width: 80px;
     font-weight: 500;
@@ -80,37 +81,42 @@ body{
 .Enter {
     width: 86px;
 }
-.DEL, .Up, .Left, .Down, .Right, .ShiftRight, .AltRight, .CtrlRight{
+.DEL, .ArrowUp, .ArrowLeft, .ArrowDown, .ArrowRight, .ShiftRight, .AltRight, .ControlRight{
     background-color: $func-key-background;
     width: 40px;
 }
 
-.Backspase {
+.Backspace {
     background-image: url('../icons/backspace-outline.svg');
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.Up{
+.ArrowUp{
     background-image: url('../icons/arrow-up-thick.svg');
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.Left{
+.ArrowLeft{
     background-image: url('../icons/arrow-left-thick.svg');
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.Down{
+.ArrowDown{
     background-image: url('../icons/arrow-down-thick.svg');
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.Right{
+.ArrowRight{
     background-image: url('../icons/arrow-right-thick.svg');
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.pressed {
+    background-color: $pressedKey-color;
+    transition: background-color 0.3s;
 }
