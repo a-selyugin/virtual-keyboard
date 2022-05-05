@@ -89,6 +89,17 @@ export default class Keyboard {
           });
           break;
 
+        case 'Tab':
+          keyElement.addEventListener('mousedown', () => {
+            this.outputString += '    ';
+            this.textarea.value += '    ';
+            keyElement.classList.add('pressed');
+          });
+          keyElement.addEventListener('mouseup', () => {
+            keyElement.classList.remove('pressed');
+          });
+          break;
+
         default:
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentlyPresent');
