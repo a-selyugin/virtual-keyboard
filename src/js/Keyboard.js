@@ -53,9 +53,9 @@ export default class Keyboard {
         capsSpan.innerHTML = noCapsKeysArray.includes(content) ? content : content.toUpperCase();
         newSpan.append(capsSpan);
 
-        // создаем shiftedCaps Span
+        // создаем shiftPlusCaps Span
         const shiftedCaps = document.createElement('span');
-        shiftedCaps.classList.add('lowerCase', 'hidden');
+        shiftedCaps.classList.add('shiftPlusCaps', 'hidden');
         shiftedCaps.innerHTML = content;
         newSpan.append(shiftedCaps);
 
@@ -157,6 +157,10 @@ export default class Keyboard {
           this.shiftIsPressed = true;
           this.keyboardReInit('eng');
           break;
+        case 'CapsLock':
+          this.capsLock = true;
+          this.keyboardReInit('eng');
+          break;
         case 'ShiftRight':
           this.shiftIsPressed = true;
           this.keyboardReInit('eng');
@@ -181,6 +185,10 @@ export default class Keyboard {
           this.shiftIsPressed = false;
           this.keyboardReInit('eng');
           break;
+        case 'CapsLock':
+          this.capsLock = false;
+          this.keyboardReInit('eng');
+          break;
         default:
       }
     });
@@ -193,8 +201,17 @@ export default class Keyboard {
       shownKey.classList.remove('currentKeyValue');
       shownKey.classList.add('hidden');
       let newKeyToShow = keyArray[i].querySelector(`.${chosenLanguage}`);
-      if (this.shiftIsPressed) {
+
+      if (this.shiftIsPressed && !this.capsLock) {
         newKeyToShow = newKeyToShow.querySelector('.shifted');
+        newKeyToShow.classList.remove('hidden');
+        newKeyToShow.classList.add('currentKeyValue');
+      } else if (!this.shiftIsPressed && this.capsLock) {
+        newKeyToShow = newKeyToShow.querySelector('.caps');
+        newKeyToShow.classList.remove('hidden');
+        newKeyToShow.classList.add('currentKeyValue');
+      } else if (this.shiftIsPressed && this.capsLock) {
+        newKeyToShow = newKeyToShow.querySelector('.shiftPlusCaps');
         newKeyToShow.classList.remove('hidden');
         newKeyToShow.classList.add('currentKeyValue');
       } else {
