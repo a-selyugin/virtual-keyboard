@@ -155,9 +155,11 @@ export default class Keyboard {
           break;
         case 'ShiftLeft':
           this.shiftIsPressed = true;
+          this.keyboardReInit('eng');
           break;
         case 'ShiftRight':
           this.shiftIsPressed = true;
+          this.keyboardReInit('eng');
           break;
         default:
           if (this.shiftIsPressed) {
@@ -173,12 +175,33 @@ export default class Keyboard {
       switch (event.code) {
         case 'ShiftLeft':
           this.shiftIsPressed = false;
+          this.keyboardReInit('eng');
           break;
         case 'ShiftRight':
           this.shiftIsPressed = false;
+          this.keyboardReInit('eng');
           break;
         default:
       }
     });
+  }
+
+  keyboardReInit(chosenLanguage) {
+    const keyArray = this.container.querySelectorAll('.keyboard__key');
+    for (let i = 0; i < keyArray.length; i += 1) {
+      const shownKey = keyArray[i].querySelector('.currentKeyValue');
+      shownKey.classList.remove('currentKeyValue');
+      shownKey.classList.add('hidden');
+      let newKeyToShow = keyArray[i].querySelector(`.${chosenLanguage}`);
+      if (this.shiftIsPressed) {
+        newKeyToShow = newKeyToShow.querySelector('.shifted');
+        newKeyToShow.classList.remove('hidden');
+        newKeyToShow.classList.add('currentKeyValue');
+      } else {
+        newKeyToShow = newKeyToShow.querySelector('.lowerCase');
+        newKeyToShow.classList.remove('hidden');
+        newKeyToShow.classList.add('currentKeyValue');
+      }
+    }
   }
 }
