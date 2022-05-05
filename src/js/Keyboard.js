@@ -132,8 +132,8 @@ export default class Keyboard {
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.add('pressed');
       const calledKey = activeKey.querySelector('.currentKeyValue');
-      const content = calledKey.innerHTML;
-      switch (event.code){
+      let content = calledKey.innerHTML;
+      switch (event.code) {
         case 'Backspace':
           this.outputString = this.outputString.substring(0, this.outputString.length - 1);
           this.textarea.value = this.textarea.value.substring(0, this.textarea.value.length - 1);
@@ -150,7 +150,16 @@ export default class Keyboard {
           this.outputString += '    ';
           this.textarea.value += '    ';
           break;
+        case 'ShiftLeft':
+          this.shiftIsPressed = true;
+          break;
+        case 'ShiftRight':
+          this.shiftIsPressed = true;
+          break;
         default:
+          if (this.shiftIsPressed) {
+            content = content.toUpperCase();
+          }
           this.outputString += content;
           this.textarea.value += content;
       }
@@ -158,6 +167,15 @@ export default class Keyboard {
     document.addEventListener('keyup', (event) => {
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.remove('pressed');
+      switch (event.code) {
+        case 'ShiftLeft':
+          this.shiftIsPressed = false;
+          break;
+        case 'ShiftRight':
+          this.shiftIsPressed = false;
+          break;
+        default:
+      }
     });
   }
 }
