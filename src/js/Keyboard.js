@@ -65,9 +65,13 @@ export default class Keyboard {
       documentRow.append(keyElement);
 
       // добавляем listener для каждого элемента
-      keyElement.addEventListener('click', () => {
+      keyElement.addEventListener('mousedown', () => {
         this.outputString += ElementsRow[i].engKey;
         this.textarea.value += ElementsRow[i].engKey;
+        keyElement.classList.add('pressed');
+      });
+      keyElement.addEventListener('mouseup', () => {
+        keyElement.classList.remove('pressed');
       });
     }
   }

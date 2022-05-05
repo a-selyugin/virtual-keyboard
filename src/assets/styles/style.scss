@@ -1,8 +1,8 @@
 $font-main: helvetica, sans-serif;
 $keyboard-background: #d6d6d6;
-$main-key-background: rgba(0, 0, 0, 0.5);
+$main-key-background: rgba(0, 0, 0, 0.6);
 $func-key-background: rgba(0, 0, 0, 0.9);
-$hover-color: rgba(0, 0, 0, 0.6);
+$hover-color: rgba(0, 0, 0, 0.4);
 $pressedKey-color: rgba(0, 0, 0, 0.2);
 $text-color: #FFFFFF;
 
@@ -119,4 +119,7 @@ body{
 .pressed {
     background-color: $pressedKey-color;
     transition: background-color 0.3s;
+    &:hover{
+        background-color: $pressedKey-color;
+    }
 }
