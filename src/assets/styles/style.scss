@@ -71,6 +71,8 @@ body{
     vertical-align: top;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0px 1px 0px 1px $func-key-background;
+    transition: box-shadow 0.3s;
     &:hover{
         background-color: $hover-color;
     }
@@ -127,7 +129,9 @@ body{
 
 .pressed {
     background-color: $pressedKey-color;
+    box-shadow: 0px 0px 0px $func-key-background;
     transition: background-color 0.3s;
+    transition: box-shadow 0.3s;
     &:hover{
         background-color: $pressedKey-color;
     }
