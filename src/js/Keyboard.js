@@ -138,6 +138,20 @@ export default class Keyboard {
           });
           break;
 
+        case 'AltRight':
+        case 'AltLeft':
+          keyElement.addEventListener('mousedown', () => {
+            this.altIsPressed = true;
+            keyElement.classList.add('pressed');
+            console.log('altIsPressed = ', this.altIsPressed);
+          });
+          keyElement.addEventListener('mouseup', () => {
+            this.altIsPressed = false;
+            keyElement.classList.remove('pressed');
+            console.log('altIsPressed = ', this.altIsPressed);
+          });
+          break;
+
         default:
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentKeyValue');
@@ -203,7 +217,10 @@ export default class Keyboard {
         case 'ControlLeft':
         case 'ControlRight':
           this.controlIsPressed = true;
-          console.log('control was pressed');
+          break;
+        case 'AltLeft':
+        case 'AltRight':
+          this.altIsPressed = true;
           break;
         default:
           this.outputString += content;
@@ -226,6 +243,10 @@ export default class Keyboard {
         case 'ControlLeft':
         case 'ControlRight':
           this.controlIsPressed = false;
+          break;
+        case 'AltLeft':
+        case 'AltRight':
+          this.altIsPressed = false;
           break;
         default:
       }
