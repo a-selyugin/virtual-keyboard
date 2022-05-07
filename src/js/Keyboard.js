@@ -8,12 +8,10 @@ export default class Keyboard {
     this.outputString = '';
     this.controlIsPressed = false;
     this.altIsPressed = false;
-
-    this.exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
     this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Backquote', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
-  createKeyRow(documentRow, ElementsRow, noCapsKeysArray) {
+  createKeyRow(documentRow, ElementsRow) {
     for (let i = 0; i < ElementsRow.length; i += 1) {
       const keyElement = document.createElement('div');
       keyElement.classList.add('keyboard__key', ElementsRow[i].name);
@@ -31,7 +29,7 @@ export default class Keyboard {
       for (let j = 0; j < engProps.length; j += 1) {
         const engSpanItem = document.createElement('span');
         const content = engProps[j][1];
-  
+
         engSpanItem.classList.add(engProps[j][0]);
 
         if (engProps[j][0] !== 'lowerCase') {
@@ -56,50 +54,6 @@ export default class Keyboard {
         }
         rusSpan.append(rusSpanItem);
       }
-      // for (let j = 0; j < ElementsRow[i].languages.length; j += 1) {
-      //   const language = ElementsRow[i].languages[j];
-      //   let content;
-      //   // тут определяем какой язык и присваиваем соответствущее значение экземпляра Key
-      //   if (language === 'eng') {
-      //     content = ElementsRow[i].engKey;
-      //   } else if (language === 'rus') {
-      //     content = ElementsRow[i].rusKey;
-      //   }
-
-      //   const newSpan = document.createElement('span');
-      //   newSpan.classList.add(language);
-
-      //   // временно спрячем русский язык
-      //   if (language === 'rus') {
-      //     newSpan.classList.add('hidden');
-      //   }
-
-      //   // создаем lowerCase Span
-      //   const lowerCaseSpan = document.createElement('span');
-      //   lowerCaseSpan.classList.add('lowerCase', 'currentKeyValue');
-      //   lowerCaseSpan.innerHTML = content;
-      //   newSpan.append(lowerCaseSpan);
-
-      //   // создаем shifted Span
-      //   const shiftedSpan = document.createElement('span');
-      //   shiftedSpan.classList.add('shifted', 'hidden');
-      //   shiftedSpan.innerHTML = noCapsKeysArray
-      //     .includes(content) ? content : content.toUpperCase();
-      //   newSpan.append(shiftedSpan);
-
-      //   // создаем caps Span
-      //   const capsSpan = document.createElement('span');
-      //   capsSpan.classList.add('caps', 'hidden');
-      //   capsSpan.innerHTML = noCapsKeysArray.includes(content) ? content : content.toUpperCase();
-      //   newSpan.append(capsSpan);
-
-      //   // создаем shiftPlusCaps Span
-      //   const shiftedCaps = document.createElement('span');
-      //   shiftedCaps.classList.add('shiftPlusCaps', 'hidden');
-      //   shiftedCaps.innerHTML = content;
-      //   newSpan.append(shiftedCaps);
-
-      //  keyElement.append(newSpan);
 
       keyElement.append(engSpan);
       keyElement.append(rusSpan);
@@ -213,7 +167,7 @@ export default class Keyboard {
       newDiv.classList.add(`keyboard__row-${i + 1}`);
       this.container.append(newDiv);
       const keyboardRowArray = document.querySelector(`.keyboard__row-${i + 1}`);
-      this.createKeyRow(keyboardRowArray, this.keyboardArray[i], this.exceptionsArray);
+      this.createKeyRow(keyboardRowArray, this.keyboardArray[i]);
     }
 
     this.keyboardHandler();
