@@ -124,6 +124,20 @@ export default class Keyboard {
           });
           break;
 
+        case 'ControlLeft':
+        case 'ControlRight':
+          keyElement.addEventListener('mousedown', () => {
+            this.controlIsPressed = true;
+            keyElement.classList.add('pressed');
+            // console.log('controlIsPressed = ', this.controlIsPressed);
+          });
+          keyElement.addEventListener('mouseup', () => {
+            this.controlIsPressed = false;
+            keyElement.classList.remove('pressed');
+            // console.log('controlIsPressed = ', this.controlIsPressed);
+          });
+          break;
+
         default:
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentKeyValue');
@@ -156,7 +170,7 @@ export default class Keyboard {
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.add('pressed');
       const calledKey = activeKey.querySelector('.currentKeyValue');
-      let content = calledKey.innerHTML;
+      const content = calledKey.innerHTML;
       switch (event.code) {
         case 'Backspace':
           this.outputString = this.outputString.substring(0, this.outputString.length - 1);
