@@ -9,7 +9,7 @@ export default class Keyboard {
     this.controlIsPressed = false;
     this.altIsPressed = false;
     this.languagesArray = ['eng', 'rus'];
-    this.currentLanguage = 'eng';
+    this.currentLanguage = localStorage.language ? localStorage.language : 'eng';
     this.languageIsChanged = false;
     this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Backquote', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
@@ -60,7 +60,7 @@ export default class Keyboard {
 
         rusSpanItem.classList.add(rusProps[j][0]);
 
-        if ((engProps[j][0] !== 'lowerCase') && currentLanguage === rusSpan) {
+        if ((engProps[j][0] === 'lowerCase') && currentLanguage === rusSpan) {
           rusSpanItem.classList.add('currentKeyValue');
         } else {
           rusSpanItem.classList.add('hidden');
@@ -339,6 +339,7 @@ export default class Keyboard {
     } else {
       [this.currentLanguage] = this.languagesArray;
     }
+    localStorage.language = this.currentLanguage;
     this.languageIsChanged = true;
   }
 }
