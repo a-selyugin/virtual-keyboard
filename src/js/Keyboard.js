@@ -200,6 +200,11 @@ export default class Keyboard {
           this.capsLock = true;
           this.keyboardReInit('eng');
           break;
+        case 'ControlLeft':
+        case 'ControlRight':
+          this.controlIsPressed = true;
+          console.log('control was pressed');
+          break;
         default:
           this.outputString += content;
           this.textarea.value += content;
@@ -217,6 +222,10 @@ export default class Keyboard {
         case 'CapsLock':
           this.capsLock = false;
           this.keyboardReInit('eng');
+          break;
+        case 'ControlLeft':
+        case 'ControlRight':
+          this.controlIsPressed = false;
           break;
         default:
       }
