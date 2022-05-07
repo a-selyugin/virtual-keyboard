@@ -149,7 +149,7 @@ export default class Keyboard {
         default:
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentKeyValue');
-            currentKeyValue = currentKeyValue.innerHTML;
+            currentKeyValue = currentKeyValue.textContent;
             this.outputString += currentKeyValue;
             this.textarea.value += currentKeyValue;
             keyElement.classList.add('pressed');
@@ -182,7 +182,7 @@ export default class Keyboard {
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.add('pressed');
       const calledKey = activeKey.querySelector('.currentKeyValue');
-      const content = calledKey.innerHTML;
+      const content = calledKey.textContent;
       switch (event.code) {
         case 'Backspace':
           this.outputString = this.outputString.substring(0, this.outputString.length - 1);
@@ -222,7 +222,7 @@ export default class Keyboard {
           break;
         default:
           this.outputString += content;
-          this.textarea.value += content;
+          this.textarea.value += content.toString();
       }
     });
     document.addEventListener('keyup', (event) => {
