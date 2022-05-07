@@ -13,8 +13,8 @@ const wrapper = document.querySelector('.wrapper');
 appendElementTo('h1', 'header', 'Virtual Keyboard for RSSchool', wrapper);
 appendElementTo('textarea', 'main__textarea', '', wrapper);
 appendElementTo('div', 'keyboard__container', '', wrapper);
-appendElementTo('p', 'main__legend', 'placeholder1', wrapper);
-appendElementTo('p', 'main__legend', 'placeholder2', wrapper);
+appendElementTo('p', 'main__legend', 'Use Ctrl + Alt to change language', wrapper);
+appendElementTo('p', 'main__legend', 'Клавиатура была разработана в операционной системе OSX', wrapper);
 
 // create keyboard rows
 const keyboardContainer = document.querySelector('.keyboard__container');
