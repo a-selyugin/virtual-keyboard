@@ -11,7 +11,7 @@ export default class Keyboard {
     this.languagesArray = ['eng', 'rus'];
     this.currentLanguage = localStorage.language ? localStorage.language : 'eng';
     this.languageIsChanged = false;
-    this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Backquote', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
+    this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
   createKeyRow(documentRow, ElementsRow) {
