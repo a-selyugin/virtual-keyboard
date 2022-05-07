@@ -118,9 +118,6 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             this.shiftIsPressed = true;
             keyElement.classList.add('pressed');
-            if (this.altIsPressed) {
-              this.changeLanguage();
-            }
             this.keyboardReInit(this.currentLanguage);
           });
           keyElement.addEventListener('mouseup', () => {
@@ -143,6 +140,10 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             this.controlIsPressed = true;
             keyElement.classList.add('pressed');
+            if (this.altIsPressed) {
+              this.changeLanguage();
+              this.keyboardReInit(this.currentLanguage);
+            }
             // console.log('controlIsPressed = ', this.controlIsPressed);
           });
           keyElement.addEventListener('mouseup', () => {
@@ -160,6 +161,7 @@ export default class Keyboard {
             // console.log('altIsPressed = ', this.altIsPressed);
             if (this.shiftIsPressed) {
               this.changeLanguage();
+              this.keyboardReInit(this.currentLanguage);
             }
           });
           keyElement.addEventListener('mouseup', () => {
@@ -229,9 +231,6 @@ export default class Keyboard {
         case 'ShiftLeft':
         case 'ShiftRight':
           this.shiftIsPressed = true;
-          if (this.altIsPressed) {
-            this.changeLanguage();
-          }
           this.keyboardReInit(this.currentLanguage);
           break;
         case 'CapsLock':
@@ -241,12 +240,17 @@ export default class Keyboard {
         case 'ControlLeft':
         case 'ControlRight':
           this.controlIsPressed = true;
+          if (this.altIsPressed) {
+            this.changeLanguage();
+            this.keyboardReInit(this.currentLanguage);
+          }
           break;
         case 'AltLeft':
         case 'AltRight':
           this.altIsPressed = true;
-          if (this.shiftIsPressed) {
+          if (this.controlIsPressed) {
             this.changeLanguage();
+            this.keyboardReInit(this.currentLanguage);
           }
           break;
         default:
