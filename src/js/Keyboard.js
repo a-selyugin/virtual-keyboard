@@ -103,6 +103,9 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             this.shiftIsPressed = true;
             keyElement.classList.add('pressed');
+            if (this.altIsPressed) {
+              this.changeLanguage();
+            }
             this.keyboardReInit('eng');
           });
           keyElement.addEventListener('mouseup', () => {
@@ -140,6 +143,9 @@ export default class Keyboard {
             this.altIsPressed = true;
             keyElement.classList.add('pressed');
             // console.log('altIsPressed = ', this.altIsPressed);
+            if (this.shiftIsPressed) {
+              this.changeLanguage();
+            }
           });
           keyElement.addEventListener('mouseup', () => {
             this.altIsPressed = false;
@@ -208,6 +214,9 @@ export default class Keyboard {
         case 'ShiftLeft':
         case 'ShiftRight':
           this.shiftIsPressed = true;
+          if (this.altIsPressed) {
+            this.changeLanguage();
+          }
           this.keyboardReInit('eng');
           break;
         case 'CapsLock':
@@ -222,7 +231,6 @@ export default class Keyboard {
         case 'AltRight':
           this.altIsPressed = true;
           if (this.shiftIsPressed) {
-            this.languageIsEnglish = !this.languageIsEnglish;
             this.changeLanguage();
           }
           break;
