@@ -18,52 +18,91 @@ export default class Keyboard {
       const keyElement = document.createElement('div');
       keyElement.classList.add('keyboard__key', ElementsRow[i].name);
 
-      for (let j = 0; j < ElementsRow[i].languages.length; j += 1) {
-        const language = ElementsRow[i].languages[j];
-        let content;
+      const engSpan = document.createElement('span');
+      engSpan.classList.add('eng');
 
-        // тут определяем какой язык и присваиваем соответствущее значение экземпляра Key
-        if (language === 'eng') {
-          content = ElementsRow[i].engKey;
-        } else if (language === 'rus') {
-          content = ElementsRow[i].rusKey;
+      const rusSpan = document.createElement('span');
+      rusSpan.classList.add('rus');
+      rusSpan.classList.add('hidden');
+
+      const engProps = Object.entries(ElementsRow[i].eng);
+      const rusProps = Object.entries(ElementsRow[i].rus);
+
+      for (let j = 0; j < engProps.length; j += 1) {
+        const engSpanItem = document.createElement('span');
+        const content = engProps[j][1];
+  
+        engSpanItem.classList.add(engProps[j][0]);
+
+        if (engProps[j][0] !== 'lowerCase') {
+          engSpanItem.classList.add('hidden');
+        } else {
+          engSpanItem.classList.add('currentKeyValue');
         }
+        engSpanItem.innerHTML = content;
 
-        const newSpan = document.createElement('span');
-        newSpan.classList.add(language);
-
-        // временно спрячем русский язык
-        if (language === 'rus') {
-          newSpan.classList.add('hidden');
-        }
-
-        // создаем lowerCase Span
-        const lowerCaseSpan = document.createElement('span');
-        lowerCaseSpan.classList.add('lowerCase', 'currentKeyValue');
-        lowerCaseSpan.innerHTML = content;
-        newSpan.append(lowerCaseSpan);
-
-        // создаем shifted Span
-        const shiftedSpan = document.createElement('span');
-        shiftedSpan.classList.add('shifted', 'hidden');
-        shiftedSpan.innerHTML = noCapsKeysArray
-          .includes(content) ? content : content.toUpperCase();
-        newSpan.append(shiftedSpan);
-
-        // создаем caps Span
-        const capsSpan = document.createElement('span');
-        capsSpan.classList.add('caps', 'hidden');
-        capsSpan.innerHTML = noCapsKeysArray.includes(content) ? content : content.toUpperCase();
-        newSpan.append(capsSpan);
-
-        // создаем shiftPlusCaps Span
-        const shiftedCaps = document.createElement('span');
-        shiftedCaps.classList.add('shiftPlusCaps', 'hidden');
-        shiftedCaps.innerHTML = content;
-        newSpan.append(shiftedCaps);
-
-        keyElement.append(newSpan);
+        engSpan.append(engSpanItem);
       }
+
+      for (let j = 0; j < rusProps.length; j += 1) {
+        const rusSpanItem = document.createElement('span');
+        const content = engProps[j][1];
+
+        rusSpanItem.classList.add(engProps[j][0]);
+        rusSpanItem.classList.add('hidden');
+
+        if (content) {
+          rusSpanItem.innerHTML = content;
+        }
+        rusSpan.append(rusSpanItem);
+      }
+      // for (let j = 0; j < ElementsRow[i].languages.length; j += 1) {
+      //   const language = ElementsRow[i].languages[j];
+      //   let content;
+      //   // тут определяем какой язык и присваиваем соответствущее значение экземпляра Key
+      //   if (language === 'eng') {
+      //     content = ElementsRow[i].engKey;
+      //   } else if (language === 'rus') {
+      //     content = ElementsRow[i].rusKey;
+      //   }
+
+      //   const newSpan = document.createElement('span');
+      //   newSpan.classList.add(language);
+
+      //   // временно спрячем русский язык
+      //   if (language === 'rus') {
+      //     newSpan.classList.add('hidden');
+      //   }
+
+      //   // создаем lowerCase Span
+      //   const lowerCaseSpan = document.createElement('span');
+      //   lowerCaseSpan.classList.add('lowerCase', 'currentKeyValue');
+      //   lowerCaseSpan.innerHTML = content;
+      //   newSpan.append(lowerCaseSpan);
+
+      //   // создаем shifted Span
+      //   const shiftedSpan = document.createElement('span');
+      //   shiftedSpan.classList.add('shifted', 'hidden');
+      //   shiftedSpan.innerHTML = noCapsKeysArray
+      //     .includes(content) ? content : content.toUpperCase();
+      //   newSpan.append(shiftedSpan);
+
+      //   // создаем caps Span
+      //   const capsSpan = document.createElement('span');
+      //   capsSpan.classList.add('caps', 'hidden');
+      //   capsSpan.innerHTML = noCapsKeysArray.includes(content) ? content : content.toUpperCase();
+      //   newSpan.append(capsSpan);
+
+      //   // создаем shiftPlusCaps Span
+      //   const shiftedCaps = document.createElement('span');
+      //   shiftedCaps.classList.add('shiftPlusCaps', 'hidden');
+      //   shiftedCaps.innerHTML = content;
+      //   newSpan.append(shiftedCaps);
+
+      //  keyElement.append(newSpan);
+
+      keyElement.append(engSpan);
+      keyElement.append(rusSpan);
 
       documentRow.append(keyElement);
 
