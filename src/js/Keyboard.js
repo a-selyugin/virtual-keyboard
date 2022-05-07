@@ -187,9 +187,6 @@ export default class Keyboard {
           this.keyboardReInit('eng');
           break;
         default:
-          if (this.shiftIsPressed) {
-            content = content.toUpperCase();
-          }
           this.outputString += content;
           this.textarea.value += content;
       }
