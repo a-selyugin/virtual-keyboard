@@ -10,6 +10,7 @@ export default class Keyboard {
     this.altIsPressed = false;
     this.languagesArray = ['eng', 'rus'];
     this.currentLanguage = 'eng';
+    this.languageIsChanged = false;
     this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Backquote', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
@@ -23,7 +24,16 @@ export default class Keyboard {
 
       const rusSpan = document.createElement('span');
       rusSpan.classList.add('rus');
-      rusSpan.classList.add('hidden');
+      let currentLanguage;
+      if (this.currentLanguage === 'eng') {
+        rusSpan.classList.add('hidden');
+        engSpan.classList.add('currentLanguage');
+        currentLanguage = engSpan;
+      } else {
+        engSpan.classList.add('hidden');
+        rusSpan.classList.add('currentLanguage');
+        currentLanguage = rusSpan;
+      }
 
       const engProps = Object.entries(ElementsRow[i].eng);
       const rusProps = Object.entries(ElementsRow[i].rus);
@@ -34,10 +44,10 @@ export default class Keyboard {
 
         engSpanItem.classList.add(engProps[j][0]);
 
-        if (engProps[j][0] !== 'lowerCase') {
-          engSpanItem.classList.add('hidden');
-        } else {
+        if ((engProps[j][0] === 'lowerCase') && currentLanguage === engSpan) {
           engSpanItem.classList.add('currentKeyValue');
+        } else {
+          engSpanItem.classList.add('hidden');
         }
         engSpanItem.innerHTML = content;
 
@@ -46,10 +56,15 @@ export default class Keyboard {
 
       for (let j = 0; j < rusProps.length; j += 1) {
         const rusSpanItem = document.createElement('span');
-        const content = engProps[j][1];
+        const content = rusProps[j][1];
 
-        rusSpanItem.classList.add(engProps[j][0]);
-        rusSpanItem.classList.add('hidden');
+        rusSpanItem.classList.add(rusProps[j][0]);
+
+        if ((engProps[j][0] !== 'lowerCase') && currentLanguage === rusSpan) {
+          rusSpanItem.classList.add('currentKeyValue');
+        } else {
+          rusSpanItem.classList.add('hidden');
+        }
 
         if (content) {
           rusSpanItem.innerHTML = content;
@@ -106,11 +121,11 @@ export default class Keyboard {
             if (this.altIsPressed) {
               this.changeLanguage();
             }
-            this.keyboardReInit('eng');
+            this.keyboardReInit(this.currentLanguage);
           });
           keyElement.addEventListener('mouseup', () => {
             this.shiftIsPressed = false;
-            this.keyboardReInit('eng');
+            this.keyboardReInit(this.currentLanguage);
             keyElement.classList.remove('pressed');
           });
           break;
@@ -119,7 +134,7 @@ export default class Keyboard {
           keyElement.addEventListener('click', () => {
             this.capsLock = !this.capsLock;
             keyElement.classList.toggle('pressed');
-            this.keyboardReInit('eng');
+            this.keyboardReInit(this.currentLanguage);
           });
           break;
 
@@ -217,11 +232,11 @@ export default class Keyboard {
           if (this.altIsPressed) {
             this.changeLanguage();
           }
-          this.keyboardReInit('eng');
+          this.keyboardReInit(this.currentLanguage);
           break;
         case 'CapsLock':
           this.capsLock = true;
-          this.keyboardReInit('eng');
+          this.keyboardReInit(this.currentLanguage);
           break;
         case 'ControlLeft':
         case 'ControlRight':
@@ -249,11 +264,11 @@ export default class Keyboard {
         case 'ShiftLeft':
         case 'ShiftRight':
           this.shiftIsPressed = false;
-          this.keyboardReInit('eng');
+          this.keyboardReInit(this.currentLanguage);
           break;
         case 'CapsLock':
           this.capsLock = false;
-          this.keyboardReInit('eng');
+          this.keyboardReInit(this.currentLanguage);
           break;
         case 'ControlLeft':
         case 'ControlRight':
@@ -269,12 +284,33 @@ export default class Keyboard {
   }
 
   keyboardReInit(chosenLanguage) {
+    // определяем с какого языка мы переключились
+    let previousLanguage;
+    const indexOfChosenLanguage = this.languagesArray.indexOf(chosenLanguage);
+    if (indexOfChosenLanguage === 0) {
+      previousLanguage = this.languagesArray[this.languagesArray.length - 1];
+    } else {
+      previousLanguage = this.languagesArray[indexOfChosenLanguage - 1];
+    }
+
+    console.log(chosenLanguage, '<- current ......... previous ->', previousLanguage);
+
     const keyArray = this.container.querySelectorAll('.keyboard__key');
     for (let i = 0; i < keyArray.length; i += 1) {
+      let newKeyToShow = keyArray[i].querySelector(`.${chosenLanguage}`);
+      const keyToHide = keyArray[i].querySelector(`.${previousLanguage}`);
+
+      if (this.languageIsChanged) {
+        newKeyToShow.classList.toggle('hidden');
+        newKeyToShow.classList.toggle('currentLanguage');
+
+        keyToHide.classList.toggle('hidden');
+        keyToHide.classList.toggle('currentLanguage');
+      }
+
       const shownKey = keyArray[i].querySelector('.currentKeyValue');
       shownKey.classList.remove('currentKeyValue');
       shownKey.classList.add('hidden');
-      let newKeyToShow = keyArray[i].querySelector(`.${chosenLanguage}`);
 
       if (this.shiftIsPressed && !this.capsLock) {
         newKeyToShow = newKeyToShow.querySelector('.shifted');
@@ -294,6 +330,7 @@ export default class Keyboard {
         newKeyToShow.classList.add('currentKeyValue');
       }
     }
+    this.languageIsChanged = false;
   }
 
   changeLanguage() {
@@ -303,5 +340,6 @@ export default class Keyboard {
     } else {
       [this.currentLanguage] = this.languagesArray;
     }
+    this.languageIsChanged = true;
   }
 }
