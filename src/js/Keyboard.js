@@ -144,12 +144,10 @@ export default class Keyboard {
               this.changeLanguage();
               this.keyboardReInit(this.currentLanguage);
             }
-            // console.log('controlIsPressed = ', this.controlIsPressed);
           });
           keyElement.addEventListener('mouseup', () => {
             this.controlIsPressed = false;
             keyElement.classList.remove('pressed');
-            // console.log('controlIsPressed = ', this.controlIsPressed);
           });
           break;
 
@@ -158,7 +156,6 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             this.altIsPressed = true;
             keyElement.classList.add('pressed');
-            // console.log('altIsPressed = ', this.altIsPressed);
             if (this.shiftIsPressed) {
               this.changeLanguage();
               this.keyboardReInit(this.currentLanguage);
@@ -167,7 +164,6 @@ export default class Keyboard {
           keyElement.addEventListener('mouseup', () => {
             this.altIsPressed = false;
             keyElement.classList.remove('pressed');
-            // console.log('altIsPressed = ', this.altIsPressed);
           });
           break;
 
@@ -296,8 +292,6 @@ export default class Keyboard {
     } else {
       previousLanguage = this.languagesArray[indexOfChosenLanguage - 1];
     }
-
-    console.log(chosenLanguage, '<- current ......... previous ->', previousLanguage);
 
     const keyArray = this.container.querySelectorAll('.keyboard__key');
     for (let i = 0; i < keyArray.length; i += 1) {
