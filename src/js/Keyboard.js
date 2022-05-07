@@ -15,6 +15,7 @@ export default class Keyboard {
   }
 
   createKeyRow(documentRow, ElementsRow) {
+    // метод создания ряда клавиатуры, при создании страницы
     for (let i = 0; i < ElementsRow.length; i += 1) {
       const keyElement = document.createElement('div');
       keyElement.classList.add('keyboard__key', ElementsRow[i].name);
@@ -195,8 +196,10 @@ export default class Keyboard {
   }
 
   keyboardHandler() {
+    // создаем листенер для нажатий на клавиши и обрабатываем разные события
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
+      // обаратываем клавиши, которых нет на экранной клавиатуре
       if (this.excludedFromScreenKeyboard.includes(event.code)) {
         console.log('This button is not present on screen keyboard');
         return;
@@ -255,6 +258,7 @@ export default class Keyboard {
           this.textarea.value += content.toString();
       }
     });
+    // вешаем листенер на поднятие клавиши
     document.addEventListener('keyup', (event) => {
       if (this.excludedFromScreenKeyboard.includes(event.code)) {
         return;
@@ -285,7 +289,9 @@ export default class Keyboard {
   }
 
   keyboardReInit(chosenLanguage) {
-    // определяем с какого языка мы переключились
+    // определяем с какого языка мы переключились, это может быть полезно,
+    // если языков больше, чем 2
+
     let previousLanguage;
     const indexOfChosenLanguage = this.languagesArray.indexOf(chosenLanguage);
     if (indexOfChosenLanguage === 0) {
@@ -298,7 +304,7 @@ export default class Keyboard {
     for (let i = 0; i < keyArray.length; i += 1) {
       let newKeyToShow = keyArray[i].querySelector(`.${chosenLanguage}`);
       const keyToHide = keyArray[i].querySelector(`.${previousLanguage}`);
-
+      // проверяем был ли сменен язык
       if (this.languageIsChanged) {
         newKeyToShow.classList.toggle('hidden');
         newKeyToShow.classList.toggle('currentLanguage');
@@ -310,7 +316,7 @@ export default class Keyboard {
       const shownKey = keyArray[i].querySelector('.currentKeyValue');
       shownKey.classList.remove('currentKeyValue');
       shownKey.classList.add('hidden');
-
+      // перерисовываем клавиши, в зависимости от выбранного регистра
       if (this.shiftIsPressed && !this.capsLock) {
         newKeyToShow = newKeyToShow.querySelector('.shifted');
         newKeyToShow.classList.remove('hidden');

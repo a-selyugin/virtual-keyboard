@@ -23,5 +23,5 @@ const activeTextarea = document.querySelector('textarea');
 const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray, activeTextarea);
 
 keyboard.init();
-
+// блокируем textarea для изменений кроме экранной клавиатуры
 activeTextarea.readOnly = true;

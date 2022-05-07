@@ -1,5 +1,7 @@
 import Key from './Key';
 
+// в этом файле создаю массивы для разных раскладок и массив исключений,
+// для которых не действуют преобразования символов
 const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
 
 const keyNamesArray = [
@@ -42,8 +44,8 @@ const engKeyboardArrayShifted = [
   'Ctrl', 'Alt', ' ', 'Alt', 'Ctrl', '←', '↓', '→',
 ];
 
+// создаю одномерный массив с клавишами с всеми нужными свойствами, используя класс Key
 const fullKeyboard = [];
-
 for (let i = 0; i < keyNamesArray.length; i += 1) {
   const newKey = new Key(
     keyNamesArray[i],
@@ -56,6 +58,7 @@ for (let i = 0; i < keyNamesArray.length; i += 1) {
   fullKeyboard.push(newKey);
 }
 
+// создаю многомерный массив, где каждый элемент первого уровня - это ряд клавиатуры
 const keyboardArray = [];
 
 for (let i = 0; i < 5; i += 1) {
