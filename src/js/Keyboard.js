@@ -157,7 +157,7 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             this.altIsPressed = true;
             keyElement.classList.add('pressed');
-            if (this.shiftIsPressed) {
+            if (this.controlIsPressed) {
               this.changeLanguage();
               this.keyboardReInit(this.currentLanguage);
             }
