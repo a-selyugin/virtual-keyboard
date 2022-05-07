@@ -45,7 +45,14 @@ const engKeyboardArrayShifted = [
 const fullKeyboard = [];
 
 for (let i = 0; i < keyNamesArray.length; i += 1) {
-  const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], engKeyboardArrayShifted[i], rusKeyboardArray[i], rusKeyboardArrayShifted[i], exceptionsArray);
+  const newKey = new Key(
+    keyNamesArray[i],
+    engKeyboardArray[i],
+    engKeyboardArrayShifted[i],
+    rusKeyboardArray[i],
+    rusKeyboardArrayShifted[i],
+    exceptionsArray,
+  );
   fullKeyboard.push(newKey);
 }
 

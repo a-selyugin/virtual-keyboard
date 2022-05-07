@@ -1,7 +1,7 @@
 export default class Key {
-  constructor(name, languages, engKey, engKeyShifted, rusKey, rusKeyShifted, exceptionsArray) {
+  constructor(name, engKey, engKeyShifted, rusKey, rusKeyShifted, exceptionsArray) {
     this.name = name;
-    this.languages = languages;
+    //this.languages = languages;
     this.eng = {
       lowerCase: engKey,
       shifted: engKeyShifted,
