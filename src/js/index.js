@@ -1,6 +1,6 @@
 import '../assets/styles/style.css';
 import '../assets/styles/style.scss';
-import keys from './keys';
+import keys from './keyboard-arrays';
 import appendElementTo from './appendElementTo';
 import Keyboard from './Keyboard';
 
