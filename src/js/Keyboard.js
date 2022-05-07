@@ -6,6 +6,8 @@ export default class Keyboard {
     this.capsLock = false;
     this.shiftIsPressed = false;
     this.outputString = '';
+    this.controlIsPressed = false;
+    this.altIsPressed = false;
 
     this.exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
   }
@@ -100,6 +102,20 @@ export default class Keyboard {
           });
           break;
 
+        case 'ShiftLeft':
+        case 'ShiftRight':
+          keyElement.addEventListener('mousedown', () => {
+            this.shiftIsPressed = true;
+            keyElement.classList.add('pressed');
+            this.keyboardReInit('eng');
+          });
+          keyElement.addEventListener('mouseup', () => {
+            this.shiftIsPressed = false;
+            this.keyboardReInit('eng');
+            keyElement.classList.remove('pressed');
+          });
+          break;
+
         default:
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentKeyValue');
@@ -154,15 +170,12 @@ export default class Keyboard {
           this.textarea.value += '    ';
           break;
         case 'ShiftLeft':
+        case 'ShiftRight':
           this.shiftIsPressed = true;
           this.keyboardReInit('eng');
           break;
         case 'CapsLock':
           this.capsLock = true;
-          this.keyboardReInit('eng');
-          break;
-        case 'ShiftRight':
-          this.shiftIsPressed = true;
           this.keyboardReInit('eng');
           break;
         default:
@@ -178,9 +191,6 @@ export default class Keyboard {
       activeKey.classList.remove('pressed');
       switch (event.code) {
         case 'ShiftLeft':
-          this.shiftIsPressed = false;
-          this.keyboardReInit('eng');
-          break;
         case 'ShiftRight':
           this.shiftIsPressed = false;
           this.keyboardReInit('eng');
