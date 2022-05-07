@@ -1,5 +1,7 @@
 import Key from './Key';
 
+const exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
+
 const keyNamesArray = [
   'IntlBackslash', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace',
   'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'DEL',
@@ -43,7 +45,7 @@ const engKeyboardArrayShifted = [
 const fullKeyboard = [];
 
 for (let i = 0; i < keyNamesArray.length; i += 1) {
-  const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], engKeyboardArrayShifted[i], rusKeyboardArray[i], rusKeyboardArrayShifted[i]);
+  const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], engKeyboardArrayShifted[i], rusKeyboardArray[i], rusKeyboardArrayShifted[i], exceptionsArray);
   fullKeyboard.push(newKey);
 }
 
