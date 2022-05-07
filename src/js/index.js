@@ -15,6 +15,7 @@ appendElementTo('textarea', 'main__textarea', '', wrapper);
 appendElementTo('div', 'keyboard__container', '', wrapper);
 appendElementTo('p', 'main__legend', 'Use Ctrl + Alt to change language', wrapper);
 appendElementTo('p', 'main__legend', 'Клавиатура была разработана в операционной системе OSX', wrapper);
+appendElementTo('p', 'main__legend', 'на других операционных системах CapsLock может работать иначе, например не залипать', wrapper);
 
 // create keyboard rows
 const keyboardContainer = document.querySelector('.keyboard__container');
