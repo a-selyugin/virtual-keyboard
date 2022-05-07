@@ -196,6 +196,7 @@ export default class Keyboard {
 
   keyboardHandler() {
     document.addEventListener('keydown', (event) => {
+      event.preventDefault();
       if (this.excludedFromScreenKeyboard.includes(event.code)) {
         console.log('This button is not present on screen keyboard');
         return;
