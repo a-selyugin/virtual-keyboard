@@ -116,6 +116,14 @@ export default class Keyboard {
           });
           break;
 
+        case 'CapsLock':
+          keyElement.addEventListener('click', () => {
+            this.capsLock = !this.capsLock;
+            keyElement.classList.toggle('pressed');
+            this.keyboardReInit('eng');
+          });
+          break;
+
         default:
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentKeyValue');
