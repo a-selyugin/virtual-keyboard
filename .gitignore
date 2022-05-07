@@ -108,3 +108,6 @@ dist
 
 #vscode internal files
 .vscode/
+
+#webpack build
+dist/
