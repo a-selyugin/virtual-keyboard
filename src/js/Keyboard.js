@@ -8,6 +8,8 @@ export default class Keyboard {
     this.outputString = '';
     this.controlIsPressed = false;
     this.altIsPressed = false;
+    this.languagesArray = ['eng', 'rus'];
+    this.currentLanguage = 'eng';
     this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Backquote', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
@@ -219,6 +221,10 @@ export default class Keyboard {
         case 'AltLeft':
         case 'AltRight':
           this.altIsPressed = true;
+          if (this.shiftIsPressed) {
+            this.languageIsEnglish = !this.languageIsEnglish;
+            this.changeLanguage();
+          }
           break;
         default:
           this.outputString += content;
@@ -279,6 +285,15 @@ export default class Keyboard {
         newKeyToShow.classList.remove('hidden');
         newKeyToShow.classList.add('currentKeyValue');
       }
+    }
+  }
+
+  changeLanguage() {
+    const arrIndex = this.languagesArray.indexOf(this.currentLanguage);
+    if (arrIndex < (this.languagesArray.length - 1)) {
+      this.currentLanguage = this.languagesArray[arrIndex + 1];
+    } else {
+      [this.currentLanguage] = this.languagesArray;
     }
   }
 }
