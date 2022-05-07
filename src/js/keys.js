@@ -16,7 +16,7 @@ const rusKeyboardArray = [
   'Ctrl', 'Alt', ' ', 'Alt', 'Ctrl', '←', '↓', '→',
 ];
 
-const rusKeyboardShifted = [
+const rusKeyboardArrayShifted = [
   'Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', '',
   'TAB', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'DEL',
   'CAPS', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Enter',
@@ -43,7 +43,7 @@ const engKeyboardArrayShifted = [
 const fullKeyboard = [];
 
 for (let i = 0; i < keyNamesArray.length; i += 1) {
-  const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], rusKeyboardArray[i]);
+  const newKey = new Key(keyNamesArray[i], ['eng', 'rus'], engKeyboardArray[i], rusKeyboardArray[i], engKeyboardArrayShifted, rusKeyboardArrayShifted);
   fullKeyboard.push(newKey);
 }
 
