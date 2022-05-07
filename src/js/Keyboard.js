@@ -10,6 +10,7 @@ export default class Keyboard {
     this.altIsPressed = false;
 
     this.exceptionsArray = ['Backspase', 'TAB', 'DEL', 'CAPS', 'Enter', 'Shift', 'Ctrl', 'Alt', 'Space', 'Up', 'Left', 'Down', 'Right'];
+    this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Backquote', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
   createKeyRow(documentRow, ElementsRow, noCapsKeysArray) {
@@ -143,12 +144,12 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             this.altIsPressed = true;
             keyElement.classList.add('pressed');
-            console.log('altIsPressed = ', this.altIsPressed);
+            // console.log('altIsPressed = ', this.altIsPressed);
           });
           keyElement.addEventListener('mouseup', () => {
             this.altIsPressed = false;
             keyElement.classList.remove('pressed');
-            console.log('altIsPressed = ', this.altIsPressed);
+            // console.log('altIsPressed = ', this.altIsPressed);
           });
           break;
 
@@ -181,6 +182,10 @@ export default class Keyboard {
 
   keyboardHandler() {
     document.addEventListener('keydown', (event) => {
+      if (this.excludedFromScreenKeyboard.includes(event.code)) {
+        console.log('This button is not present on screen keyboard');
+        return;
+      }
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.add('pressed');
       const calledKey = activeKey.querySelector('.currentKeyValue');
@@ -228,6 +233,9 @@ export default class Keyboard {
       }
     });
     document.addEventListener('keyup', (event) => {
+      if (this.excludedFromScreenKeyboard.includes(event.code)) {
+        return;
+      }
       const activeKey = document.querySelector(`.${event.code}`);
       activeKey.classList.remove('pressed');
       switch (event.code) {
