@@ -21,8 +21,22 @@ export default class Keyboard {
     const resultingText = textarea.value.substring(0, start) + char + textarea.value.substring(end);
     textarea.value = resultingText;
     textarea.focus();
-    textarea.selectionEnd = start + 1;
-    textarea.selectionStart = start + 1;
+    textarea.selectionEnd = start + char.length;
+    textarea.selectionStart = start + char.length;
+  }
+
+  backSpaceHandler() {
+    const { textarea } = this;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    if (start === end) {
+      textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+    } else {
+      textarea.value = textarea.value.substring(0, start) + textarea.value.substring(end);
+    }
+    textarea.focus();
+    textarea.selectionEnd = start;
+    textarea.selectionStart = start;
   }
 
   createKeyRow(documentRow, ElementsRow) {
@@ -94,12 +108,12 @@ export default class Keyboard {
       switch (ElementsRow[i].name) {
         case 'Backspace':
           keyElement.addEventListener('mousedown', () => {
-            this.outputString = this.outputString.substring(0, this.outputString.length - 1);
-            this.textarea.value = this.textarea.value.substring(0, this.textarea.value.length - 1);
+            this.backSpaceHandler();
             keyElement.classList.add('pressed');
           });
           keyElement.addEventListener('mouseup', () => {
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -110,6 +124,7 @@ export default class Keyboard {
           });
           keyElement.addEventListener('mouseup', () => {
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -120,6 +135,7 @@ export default class Keyboard {
           });
           keyElement.addEventListener('mouseup', () => {
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -134,6 +150,7 @@ export default class Keyboard {
             this.shiftIsPressed = false;
             this.keyboardReInit(this.currentLanguage);
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -142,6 +159,7 @@ export default class Keyboard {
             this.capsLock = !this.capsLock;
             keyElement.classList.toggle('pressed');
             this.keyboardReInit(this.currentLanguage);
+            this.textarea.focus();
           });
           break;
 
@@ -158,6 +176,7 @@ export default class Keyboard {
           keyElement.addEventListener('mouseup', () => {
             this.controlIsPressed = false;
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -174,6 +193,7 @@ export default class Keyboard {
           keyElement.addEventListener('mouseup', () => {
             this.altIsPressed = false;
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -219,8 +239,7 @@ export default class Keyboard {
       const content = calledKey.textContent;
       switch (event.code) {
         case 'Backspace':
-          this.outputString = this.outputString.substring(0, this.outputString.length - 1);
-          this.textarea.value = this.textarea.value.substring(0, this.textarea.value.length - 1);
+          this.backSpaceHandler();
           break;
         case 'Enter':
           event.preventDefault();
