@@ -133,7 +133,7 @@ export default class Keyboard {
           });
           break;
 
-        case 'NumpadDecimal':
+        case 'Delete':
           keyElement.addEventListener('mousedown', () => {
             this.deleteHandler();
             keyElement.classList.add('pressed');
@@ -268,7 +268,7 @@ export default class Keyboard {
         case 'Backspace':
           this.backSpaceHandler();
           break;
-        case 'NumpadDecimal':
+        case 'Delete':
           this.deleteHandler();
           break;
         case 'Enter':
