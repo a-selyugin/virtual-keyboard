@@ -89,7 +89,7 @@ textarea:focus {
     -webkit-tap-highlight-color: transparent;
 }
 
-.Backspace, .Tab, .NumpadDecimal, .CapsLock, .Enter, .ShiftLeft, .ControlLeft, .AltLeft, .Space, .ArrowUp, .ArrowLeft, .ArrowDown, .ArrowRight, .ShiftRight, .AltRight, .ControlRight{
+.Backspace, .Tab, .Delete, .CapsLock, .Enter, .ShiftLeft, .ControlLeft, .AltLeft, .Space, .ArrowUp, .ArrowLeft, .ArrowDown, .ArrowRight, .ShiftRight, .AltRight, .ControlRight{
     background-color: $func-key-background;
     width: 80px;
     font-weight: 500;
@@ -102,7 +102,7 @@ textarea:focus {
 .Enter {
     width: 86px;
 }
-.NumpadDecimal, .ArrowUp, .ArrowLeft, .ArrowDown, .ArrowRight, .ShiftRight, .AltRight, .ControlRight{
+.Delete, .ArrowUp, .ArrowLeft, .ArrowDown, .ArrowRight, .ShiftRight, .AltRight, .ControlRight{
     background-color: $func-key-background;
     width: 40px;
 }
