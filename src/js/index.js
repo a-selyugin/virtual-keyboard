@@ -25,4 +25,4 @@ const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray, activeTexta
 
 keyboard.init();
 // блокируем textarea для изменений кроме экранной клавиатуры
-activeTextarea.readOnly = true;
+// activeTextarea.readOnly = true;

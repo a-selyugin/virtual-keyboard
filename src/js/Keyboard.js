@@ -14,6 +14,17 @@ export default class Keyboard {
     this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
+  addTextToCursor(char) {
+    const { textarea } = this;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const resultingText = textarea.value.substring(0, start) + char + textarea.value.substring(end);
+    textarea.value = resultingText;
+    textarea.focus();
+    textarea.selectionEnd = start + 1;
+    textarea.selectionStart = start + 1;
+  }
+
   createKeyRow(documentRow, ElementsRow) {
     // метод создания ряда клавиатуры, при создании страницы
     for (let i = 0; i < ElementsRow.length; i += 1) {
@@ -94,8 +105,7 @@ export default class Keyboard {
 
         case 'Enter':
           keyElement.addEventListener('mousedown', () => {
-            this.outputString += '\n';
-            this.textarea.value += '\n';
+            this.addTextToCursor('\n');
             keyElement.classList.add('pressed');
           });
           keyElement.addEventListener('mouseup', () => {
@@ -105,8 +115,7 @@ export default class Keyboard {
 
         case 'Tab':
           keyElement.addEventListener('mousedown', () => {
-            this.outputString += '    ';
-            this.textarea.value += '    ';
+            this.addTextToCursor('    ');
             keyElement.classList.add('pressed');
           });
           keyElement.addEventListener('mouseup', () => {
@@ -172,12 +181,12 @@ export default class Keyboard {
           keyElement.addEventListener('mousedown', () => {
             let currentKeyValue = keyElement.querySelector('.currentKeyValue');
             currentKeyValue = currentKeyValue.textContent;
-            this.outputString += currentKeyValue;
-            this.textarea.value += currentKeyValue;
             keyElement.classList.add('pressed');
+            this.addTextToCursor(currentKeyValue);
           });
           keyElement.addEventListener('mouseup', () => {
             keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
       }
     }
@@ -215,18 +224,15 @@ export default class Keyboard {
           break;
         case 'Enter':
           event.preventDefault();
-          this.outputString += '\n';
-          this.textarea.value += '\n';
+          this.addTextToCursor('\n');
           break;
         case 'Space':
           event.preventDefault();
-          this.outputString += ' ';
-          this.textarea.value += ' ';
+          this.addTextToCursor(' ');
           break;
         case 'Tab':
           event.preventDefault();
-          this.outputString += '    ';
-          this.textarea.value += '    ';
+          this.addTextToCursor('    ');
           break;
         case 'ShiftLeft':
         case 'ShiftRight':
@@ -254,8 +260,7 @@ export default class Keyboard {
           }
           break;
         default:
-          this.outputString += content;
-          this.textarea.value += content.toString();
+          this.addTextToCursor(content);
       }
     });
     // вешаем листенер на поднятие клавиши
