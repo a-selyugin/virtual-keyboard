@@ -271,7 +271,10 @@ export default class Keyboard {
       const keyboardRowArray = document.querySelector(`.keyboard__row-${i + 1}`);
       this.createKeyRow(keyboardRowArray, this.keyboardArray[i]);
     }
+    // проверяем ОС клиента, чтобы правильно отрабатывать нажатия Capslock
+    this.osIsMac = (navigator.userAgent.indexOf('Mac') !== -1);
 
+    // и подключаем клавиши реальной клавиатуры
     this.keyboardHandler();
   }
 
@@ -312,8 +315,13 @@ export default class Keyboard {
           this.keyboardReInit(this.currentLanguage);
           break;
         case 'CapsLock':
-          this.capsLock = true;
-          this.keyboardReInit(this.currentLanguage);
+          if (this.osIsMac) {
+            this.capsLock = true;
+            this.keyboardReInit(this.currentLanguage);
+          } else {
+            this.capsLock = !this.capsLock;
+            this.keyboardReInit(this.currentLanguage);
+          }
           break;
         case 'ControlLeft':
           this.controlIsPressed = true;
@@ -350,8 +358,10 @@ export default class Keyboard {
           this.keyboardReInit(this.currentLanguage);
           break;
         case 'CapsLock':
-          this.capsLock = false;
-          this.keyboardReInit(this.currentLanguage);
+          if (this.osIsMac) {
+            this.capsLock = false;
+            this.keyboardReInit(this.currentLanguage);
+          }
           break;
         case 'ControlLeft':
           this.controlIsPressed = false;
