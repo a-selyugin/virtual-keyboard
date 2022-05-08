@@ -30,7 +30,23 @@ export default class Keyboard {
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
     if (start === end) {
-      textarea.value = textarea.value.substring(0, textarea.value.length - 1);
+      textarea.value = textarea.value.substring(0, start - 1) + textarea.value.substring(start);
+      textarea.selectionEnd = start - 1;
+      textarea.selectionStart = start - 1;
+    } else {
+      textarea.value = textarea.value.substring(0, start) + textarea.value.substring(end);
+      textarea.selectionEnd = start;
+      textarea.selectionStart = start;
+    }
+    textarea.focus();
+  }
+
+  deleteHandler() {
+    const { textarea } = this;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    if (start === end) {
+      textarea.value = textarea.value.substring(0, start) + textarea.value.substring(start + 1);
     } else {
       textarea.value = textarea.value.substring(0, start) + textarea.value.substring(end);
     }
@@ -109,6 +125,17 @@ export default class Keyboard {
         case 'Backspace':
           keyElement.addEventListener('mousedown', () => {
             this.backSpaceHandler();
+            keyElement.classList.add('pressed');
+          });
+          keyElement.addEventListener('mouseup', () => {
+            keyElement.classList.remove('pressed');
+            this.textarea.focus();
+          });
+          break;
+
+        case 'NumpadDecimal':
+          keyElement.addEventListener('mousedown', () => {
+            this.deleteHandler();
             keyElement.classList.add('pressed');
           });
           keyElement.addEventListener('mouseup', () => {
@@ -240,6 +267,9 @@ export default class Keyboard {
       switch (event.code) {
         case 'Backspace':
           this.backSpaceHandler();
+          break;
+        case 'NumpadDecimal':
+          this.deleteHandler();
           break;
         case 'Enter':
           event.preventDefault();
