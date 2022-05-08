@@ -127,9 +127,11 @@ export default class Keyboard {
             this.backSpaceHandler();
             keyElement.classList.add('pressed');
           });
-          keyElement.addEventListener('mouseup', () => {
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
           break;
 
@@ -138,9 +140,11 @@ export default class Keyboard {
             this.deleteHandler();
             keyElement.classList.add('pressed');
           });
-          keyElement.addEventListener('mouseup', () => {
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
           break;
 
@@ -149,9 +153,11 @@ export default class Keyboard {
             this.addTextToCursor('\n');
             keyElement.classList.add('pressed');
           });
-          keyElement.addEventListener('mouseup', () => {
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
           break;
 
@@ -160,9 +166,11 @@ export default class Keyboard {
             this.addTextToCursor('    ');
             keyElement.classList.add('pressed');
           });
-          keyElement.addEventListener('mouseup', () => {
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
           break;
 
@@ -173,11 +181,13 @@ export default class Keyboard {
             keyElement.classList.add('pressed');
             this.keyboardReInit(this.currentLanguage);
           });
-          keyElement.addEventListener('mouseup', () => {
-            this.shiftIsPressed = false;
-            this.keyboardReInit(this.currentLanguage);
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              this.shiftIsPressed = false;
+              this.keyboardReInit(this.currentLanguage);
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
           break;
 
@@ -217,10 +227,12 @@ export default class Keyboard {
               this.keyboardReInit(this.currentLanguage);
             }
           });
-          keyElement.addEventListener('mouseup', () => {
-            this.altIsPressed = false;
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              this.altIsPressed = false;
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
           break;
 
@@ -231,9 +243,11 @@ export default class Keyboard {
             keyElement.classList.add('pressed');
             this.addTextToCursor(currentKeyValue);
           });
-          keyElement.addEventListener('mouseup', () => {
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              keyElement.classList.remove('pressed');
+              this.textarea.focus();
+            });
           });
       }
     }
