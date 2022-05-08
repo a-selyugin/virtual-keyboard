@@ -175,19 +175,27 @@ export default class Keyboard {
           break;
 
         case 'ShiftLeft':
+          keyElement.addEventListener('click', () => {
+            keyElement.classList.toggle('pressed');
+            if (keyElement.classList.contains('pressed')) {
+              this.shiftIsPressed = true;
+            } else {
+              this.shiftIsPressed = false;
+            }
+            this.keyboardReInit(this.currentLanguage);
+          });
+          break;
         case 'ShiftRight':
           keyElement.addEventListener('mousedown', () => {
             this.shiftIsPressed = true;
             keyElement.classList.add('pressed');
             this.keyboardReInit(this.currentLanguage);
           });
-          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
-            keyElement.addEventListener(mouseEvent, () => {
-              this.shiftIsPressed = false;
-              this.keyboardReInit(this.currentLanguage);
-              keyElement.classList.remove('pressed');
-              this.textarea.focus();
-            });
+          keyElement.addEventListener('mouseup', () => {
+            this.shiftIsPressed = false;
+            this.keyboardReInit(this.currentLanguage);
+            keyElement.classList.remove('pressed');
+            this.textarea.focus();
           });
           break;
 
@@ -214,9 +222,10 @@ export default class Keyboard {
               this.keyboardReInit(this.currentLanguage);
             }
           });
-          keyElement.addEventListener('mouseup', () => {
-            keyElement.classList.remove('pressed');
-            this.textarea.focus();
+          ['mouseup', 'mouseleave'].forEach((mouseEvent) => {
+            keyElement.addEventListener(mouseEvent, () => {
+              keyElement.classList.remove('pressed');
+            });
           });
           break;
 
@@ -234,7 +243,6 @@ export default class Keyboard {
             keyElement.addEventListener(mouseEvent, () => {
               this.altIsPressed = false;
               keyElement.classList.remove('pressed');
-              this.textarea.focus();
             });
           });
           break;
