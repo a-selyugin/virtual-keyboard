@@ -201,9 +201,13 @@ export default class Keyboard {
           break;
 
         case 'ControlLeft':
+          keyElement.addEventListener('click', () => {
+            this.controlIsPressed = !this.controlIsPressed;
+            keyElement.classList.toggle('pressed');
+          });
+          break;
         case 'ControlRight':
           keyElement.addEventListener('mousedown', () => {
-            this.controlIsPressed = true;
             keyElement.classList.add('pressed');
             if (this.altIsPressed) {
               this.changeLanguage();
@@ -211,7 +215,6 @@ export default class Keyboard {
             }
           });
           keyElement.addEventListener('mouseup', () => {
-            this.controlIsPressed = false;
             keyElement.classList.remove('pressed');
             this.textarea.focus();
           });
@@ -307,12 +310,13 @@ export default class Keyboard {
           this.keyboardReInit(this.currentLanguage);
           break;
         case 'ControlLeft':
-        case 'ControlRight':
           this.controlIsPressed = true;
           if (this.altIsPressed) {
             this.changeLanguage();
             this.keyboardReInit(this.currentLanguage);
           }
+          break;
+        case 'ControlRight':
           break;
         case 'AltLeft':
         case 'AltRight':
@@ -344,8 +348,9 @@ export default class Keyboard {
           this.keyboardReInit(this.currentLanguage);
           break;
         case 'ControlLeft':
-        case 'ControlRight':
           this.controlIsPressed = false;
+          break;
+        case 'ControlRight':
           break;
         case 'AltLeft':
         case 'AltRight':

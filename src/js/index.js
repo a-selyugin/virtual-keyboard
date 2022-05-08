@@ -13,7 +13,7 @@ const wrapper = document.querySelector('.wrapper');
 appendElementTo('h1', 'header', 'Virtual Keyboard for RSSchool', wrapper);
 appendElementTo('textarea', 'main__textarea', '', wrapper);
 appendElementTo('div', 'keyboard__container', '', wrapper);
-appendElementTo('p', 'main__legend', 'Для смены языка используйте Ctrl + Alt.', wrapper);
+appendElementTo('p', 'main__legend', 'Для смены языка используйте Left Ctrl + Alt.', wrapper);
 appendElementTo('p', 'main__legend', 'Клавиатура была разработана в операционной системе OSX, на других операционных системах CapsLock может работать иначе, например не залипать.', wrapper);
 appendElementTo('p', 'main__legend', 'Для того, чтобы можно было сменить язык с экранной клавиатуры, клавиша Ctrl сделана зажимаемой.', wrapper);
 
@@ -25,4 +25,3 @@ const keyboard = new Keyboard(keyboardContainer, keys.keyboardArray, activeTexta
 
 keyboard.init();
 // блокируем textarea для изменений кроме экранной клавиатуры
-// activeTextarea.readOnly = true;
