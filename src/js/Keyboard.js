@@ -388,6 +388,7 @@ export default class Keyboard {
           this.altIsPressed = false;
           break;
         default:
+          activeKey.classList.remove('pressed');
       }
     });
   }
