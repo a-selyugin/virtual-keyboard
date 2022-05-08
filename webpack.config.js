@@ -13,6 +13,7 @@ module.exports = {
   mode: 'development',
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: 'src/assets/icons/favicon.png',
       title: 'Keyboard',
       filename: 'index.html',
       template: 'src/index.html',
