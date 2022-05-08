@@ -5,13 +5,12 @@ export default class Keyboard {
     this.textarea = textarea;
     this.capsLock = false;
     this.shiftIsPressed = false;
-    this.outputString = '';
     this.controlIsPressed = false;
     this.altIsPressed = false;
     this.languagesArray = ['eng', 'rus'];
     this.currentLanguage = localStorage.language ? localStorage.language : 'eng';
     this.languageIsChanged = false;
-    this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
+    this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'IntlBackslash', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
   addTextToCursor(char) {
@@ -282,7 +281,6 @@ export default class Keyboard {
       event.preventDefault();
       // обаратываем клавиши, которых нет на экранной клавиатуре
       if (this.excludedFromScreenKeyboard.includes(event.code)) {
-        console.log('This button is not present on screen keyboard');
         return;
       }
       const activeKey = document.querySelector(`.${event.code}`);
