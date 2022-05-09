@@ -1,4 +1,4 @@
-import '../assets/styles/style.css';
+// import '../assets/styles/style.css';
 import '../assets/styles/style.scss';
 import keys from './keyboard-arrays';
 import appendElementTo from './appendElementTo';
