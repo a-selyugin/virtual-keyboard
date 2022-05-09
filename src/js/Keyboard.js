@@ -10,7 +10,7 @@ export default class Keyboard {
     this.languagesArray = ['eng', 'rus'];
     this.currentLanguage = localStorage.language ? localStorage.language : 'eng';
     this.languageIsChanged = false;
-    this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'IntlBackslash', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
+    // this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'IntlBackslash', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
   addTextToCursor(char) {
@@ -283,112 +283,116 @@ export default class Keyboard {
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
       // обаратываем клавиши, которых нет на экранной клавиатуре
-      if (this.excludedFromScreenKeyboard.includes(event.code)) {
-        return;
-      }
+      // if (this.excludedFromScreenKeyboard.includes(event.code)) {
+      //   return;
+      // }
       const activeKey = document.querySelector(`.${event.code}`);
-      const calledKey = activeKey.querySelector('.currentKeyValue');
-      const content = calledKey.textContent;
-      switch (event.code) {
-        case 'Backspace':
-          activeKey.classList.add('pressed');
-          this.backSpaceHandler();
-          break;
-        case 'Delete':
-          activeKey.classList.add('pressed');
-          this.deleteHandler();
-          break;
-        case 'Enter':
-          activeKey.classList.add('pressed');
-          event.preventDefault();
-          this.addTextToCursor('\n');
-          break;
-        case 'Space':
-          activeKey.classList.add('pressed');
-          event.preventDefault();
-          this.addTextToCursor(' ');
-          break;
-        case 'Tab':
-          activeKey.classList.add('pressed');
-          event.preventDefault();
-          this.addTextToCursor('    ');
-          break;
-        case 'ShiftLeft':
-        case 'ShiftRight':
-          activeKey.classList.add('pressed');
-          this.shiftIsPressed = true;
-          this.keyboardReInit(this.currentLanguage);
-          break;
-        case 'CapsLock':
-          if (this.osIsMac) {
+      if (activeKey !== null) {
+        const calledKey = activeKey.querySelector('.currentKeyValue');
+        const content = calledKey.textContent;
+        switch (event.code) {
+          case 'Backspace':
             activeKey.classList.add('pressed');
-            this.capsLock = true;
+            this.backSpaceHandler();
+            break;
+          case 'Delete':
+            activeKey.classList.add('pressed');
+            this.deleteHandler();
+            break;
+          case 'Enter':
+            activeKey.classList.add('pressed');
+            event.preventDefault();
+            this.addTextToCursor('\n');
+            break;
+          case 'Space':
+            activeKey.classList.add('pressed');
+            event.preventDefault();
+            this.addTextToCursor(' ');
+            break;
+          case 'Tab':
+            activeKey.classList.add('pressed');
+            event.preventDefault();
+            this.addTextToCursor('    ');
+            break;
+          case 'ShiftLeft':
+          case 'ShiftRight':
+            activeKey.classList.add('pressed');
+            this.shiftIsPressed = true;
             this.keyboardReInit(this.currentLanguage);
-          } else {
-            activeKey.classList.toggle('pressed');
-            this.capsLock = !this.capsLock;
-            this.keyboardReInit(this.currentLanguage);
-          }
-          break;
-        case 'ControlLeft':
-          activeKey.classList.add('pressed');
-          this.controlIsPressed = true;
-          if (this.altIsPressed) {
-            this.changeLanguage();
-            this.keyboardReInit(this.currentLanguage);
-          }
-          break;
-        case 'ControlRight':
-          activeKey.classList.add('pressed');
-          break;
-        case 'AltLeft':
-        case 'AltRight':
-          activeKey.classList.add('pressed');
-          this.altIsPressed = true;
-          if (this.controlIsPressed) {
-            this.changeLanguage();
-            this.keyboardReInit(this.currentLanguage);
-          }
-          break;
-        default:
-          activeKey.classList.add('pressed');
-          this.addTextToCursor(content);
+            break;
+          case 'CapsLock':
+            if (this.osIsMac) {
+              activeKey.classList.add('pressed');
+              this.capsLock = true;
+              this.keyboardReInit(this.currentLanguage);
+            } else {
+              activeKey.classList.toggle('pressed');
+              this.capsLock = !this.capsLock;
+              this.keyboardReInit(this.currentLanguage);
+            }
+            break;
+          case 'ControlLeft':
+            activeKey.classList.add('pressed');
+            this.controlIsPressed = true;
+            if (this.altIsPressed) {
+              this.changeLanguage();
+              this.keyboardReInit(this.currentLanguage);
+            }
+            break;
+          case 'ControlRight':
+            activeKey.classList.add('pressed');
+            break;
+          case 'AltLeft':
+          case 'AltRight':
+            activeKey.classList.add('pressed');
+            this.altIsPressed = true;
+            if (this.controlIsPressed) {
+              this.changeLanguage();
+              this.keyboardReInit(this.currentLanguage);
+            }
+            break;
+          default:
+            activeKey.classList.add('pressed');
+            this.addTextToCursor(content);
+        }
       }
     });
     // вешаем листенер на поднятие клавиши
     document.addEventListener('keyup', (event) => {
-      if (this.excludedFromScreenKeyboard.includes(event.code)) {
-        return;
-      }
+      // if (this.excludedFromScreenKeyboard.includes(event.code)) {
+      //   return;
+      // }
       const activeKey = document.querySelector(`.${event.code}`);
-      switch (event.code) {
-        case 'ShiftLeft':
-        case 'ShiftRight':
-          activeKey.classList.remove('pressed');
-          this.shiftIsPressed = false;
-          this.keyboardReInit(this.currentLanguage);
-          break;
-        case 'CapsLock':
-          if (this.osIsMac) {
+      if (activeKey !== null) {
+        switch (event.code) {
+          case 'ShiftLeft':
+          case 'ShiftRight':
             activeKey.classList.remove('pressed');
-            this.capsLock = false;
+            this.shiftIsPressed = false;
             this.keyboardReInit(this.currentLanguage);
-          }
-          break;
-        case 'ControlLeft':
-          activeKey.classList.remove('pressed');
-          this.controlIsPressed = false;
-          break;
-        case 'ControlRight':
-          activeKey.classList.remove('pressed');
-          break;
-        case 'AltLeft':
-        case 'AltRight':
-          activeKey.classList.remove('pressed');
-          this.altIsPressed = false;
-          break;
-        default:
-          activeKey.classList.remove('pressed');
+            break;
+          case 'CapsLock':
+            if (this.osIsMac) {
+              activeKey.classList.remove('pressed');
+              this.capsLock = false;
+              this.keyboardReInit(this.currentLanguage);
+            }
+            break;
+          case 'ControlLeft':
+            activeKey.classList.remove('pressed');
+            this.controlIsPressed = false;
+            break;
+          case 'ControlRight':
+            activeKey.classList.remove('pressed');
+            break;
+          case 'AltLeft':
+          case 'AltRight':
+            activeKey.classList.remove('pressed');
+            this.altIsPressed = false;
+            break;
+          default:
+            activeKey.classList.remove('pressed');
+        }
       }
     });
   }
