@@ -44,7 +44,7 @@ const engKeyboardArrayShifted = [
   'Ctrl', 'Alt', ' ', 'Alt', 'Ctrl', '←', '↓', '→',
 ];
 
-// создаю одномерный массив с клавишами с всеми нужными свойствами, используя класс Key
+// создаем одномерный массив с клавишами со всеми нужными свойствами, используя класс Key
 const fullKeyboard = [];
 for (let i = 0; i < keyNamesArray.length; i += 1) {
   const newKey = new Key(
@@ -58,7 +58,7 @@ for (let i = 0; i < keyNamesArray.length; i += 1) {
   fullKeyboard.push(newKey);
 }
 
-// создаю многомерный массив, где каждый элемент первого уровня - это ряд клавиатуры
+// создаем многомерный массив, где каждый элемент первого уровня - это ряд клавиатуры
 const keyboardArray = [];
 
 for (let i = 0; i < 5; i += 1) {
