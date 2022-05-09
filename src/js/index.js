@@ -15,7 +15,7 @@ appendElementTo('textarea', 'main__textarea', '', wrapper);
 appendElementTo('div', 'keyboard__container', '', wrapper);
 appendElementTo('p', 'main__legend', 'Для смены языка используйте Left Ctrl + Alt.', wrapper);
 appendElementTo('p', 'main__legend', 'Для того, чтобы можно было сменить язык с экранной клавиатуры, клавиша Ctrl сделана зажимаемой.', wrapper);
-appendElementTo('p', 'main__legend', 'Клавиатура была разработана в операционной системе OSX.', wrapper);
+appendElementTo('p', 'main__legend', 'Клавиатура была разработана в операционной системе macOS.', wrapper);
 
 // create keyboard rows
 const keyboardContainer = document.querySelector('.keyboard__container');
