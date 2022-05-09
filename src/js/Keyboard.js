@@ -10,7 +10,6 @@ export default class Keyboard {
     this.languagesArray = ['eng', 'rus'];
     this.currentLanguage = localStorage.language ? localStorage.language : 'eng';
     this.languageIsChanged = false;
-    // this.excludedFromScreenKeyboard = ['MetaLeft', 'MetaRight', 'IntlBackslash', 'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
   }
 
   addTextToCursor(char) {
@@ -282,10 +281,6 @@ export default class Keyboard {
     // создаем листенер для нажатий на клавиши и обрабатываем разные события
     document.addEventListener('keydown', (event) => {
       event.preventDefault();
-      // обаратываем клавиши, которых нет на экранной клавиатуре
-      // if (this.excludedFromScreenKeyboard.includes(event.code)) {
-      //   return;
-      // }
       const activeKey = document.querySelector(`.${event.code}`);
       if (activeKey !== null) {
         const calledKey = activeKey.querySelector('.currentKeyValue');
@@ -359,9 +354,6 @@ export default class Keyboard {
     });
     // вешаем листенер на поднятие клавиши
     document.addEventListener('keyup', (event) => {
-      // if (this.excludedFromScreenKeyboard.includes(event.code)) {
-      //   return;
-      // }
       const activeKey = document.querySelector(`.${event.code}`);
       if (activeKey !== null) {
         switch (event.code) {
